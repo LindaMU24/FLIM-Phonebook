@@ -9,6 +9,7 @@ public class Test {
 
     public static void main(String[] args) {
         testDefaultConstructorOfProfile();
+        System.out.println("This works!");
     }
 
 }
