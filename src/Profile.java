@@ -58,4 +58,15 @@ public class Profile {
     public void setAddress(Address address) {
         this.address = address;
     }
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", phoneNumber=" + phoneNumber +
+                ", address=" + address +
+                '}';
+    }
 }
