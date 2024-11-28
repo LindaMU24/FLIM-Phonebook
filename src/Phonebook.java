@@ -3,14 +3,11 @@ import java.util.List;
 
 public class Phonebook {
 
-
     private static List<Profile> profiles = new ArrayList<>();
     public static void run(){
 
         addInititalList();
-        for(Profile p : profiles){
-            System.out.println(p.toString());
-        }
+
     }
 
     public static void addInititalList(){
