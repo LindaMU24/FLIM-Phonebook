@@ -100,16 +100,35 @@ public abstract class Menu {
             System.out.println("##   Search   ##");
             System.out.println("Please select search method: \n");
             System.out.println("1. By first name");
-            System.out.println(". By last name");
-            System.out.println(". By address");
-            System.out.println(". Free search");
+            System.out.println("2. By last name");
+            System.out.println("3. By address");
+            System.out.println("4. Free search");
             System.out.println("0. Go back");
-            int choice = InputHandler.getIntInRange(0,1);
+            int choice = InputHandler.getIntInRange(0,4);
             switch(choice) {
                 case 1 -> {
+                    System.out.println("##   Search by first name   ##");
                     System.out.println("Please enter the first name of the person you wish to find: ");
-                    String firstName = InputHandler.getToString();
-                    SearchProfile.searchFirstName(firstName);
+                    String query = InputHandler.getToString();
+//                    SearchProfile.searchFirstName(query); // Uncomment this line when the method is implemented
+                }
+                case 2 -> {
+                    System.out.println("##   Search by last name   ##");
+                    System.out.println("Please enter the last name of the person you wish to find: ");
+                    String query = InputHandler.getToString();
+//                    SearchProfile.searchLastName(query); // Uncomment this line when the method is implemented
+                }
+                case 3 -> {
+                    System.out.println("##   Search by address   ##");
+                    System.out.println("Please enter the address wish to find: ");
+                    String query = InputHandler.getToString();
+//                    SearchProfile.searchAddress(query); // Uncomment this line when the method is implemented
+                }
+                case 4 -> {
+                    System.out.println("##   Free search   ##");
+                    System.out.println("Please enter the term you wish to search for: ");
+                    String query = InputHandler.getToString();
+//                    SearchProfile.searchAll(query); // Uncomment this line when the method is implemented
                 }
                 case 0 -> running = false;
             }
