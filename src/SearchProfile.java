@@ -17,4 +17,22 @@ public class SearchProfile {
         }
         return matchingFirstName;
     }
+    public List<Profile> searchLastName(String lastName) {
+        List<Profile> matchingLastName = new ArrayList<>();
+        for (Profile profile : profiles) {
+            if (profile.getLastName().toLowerCase().contains(lastName.toLowerCase())) {
+                matchingLastName.add(profile);
+            }
+        }
+        return matchingLastName;
+    }
+    public List<Profile> searchAddress(Address address) {
+        List<Profile> matchingAddress = new ArrayList<>();
+        for (Profile profile : profiles) {
+            if (profile.getAddress().equals(address)) {
+                matchingAddress.add(profile);
+            }
+        }
+        return matchingAddress;
+    }
 }
