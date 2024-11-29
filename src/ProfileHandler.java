@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ProfileHandler {
-
+    Scanner scanner = new Scanner(System.in);
     List<Profile> profileList = new ArrayList<>();
     List<PhoneNumber> phoneNumbers = new ArrayList<>();
 public void addProfile(Scanner scanner){
@@ -32,4 +32,7 @@ public void addProfile(Scanner scanner){
     profileList.add(new Profile(firstName, lastName, age, phoneNumbers, address));
 }
 
+    public List<Profile> getProfileList() {
+        return profileList;
+    }
 }
