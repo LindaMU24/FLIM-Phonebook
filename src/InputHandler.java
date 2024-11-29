@@ -24,7 +24,7 @@ public class InputHandler {
         return answer;
     }
 
-    private int getIntInRange(int min, int max) {
+    public static int getIntInRange(int min, int max) {
         while (true) {
             while (!(scanner.hasNextInt())) {
                 scanner.next();
