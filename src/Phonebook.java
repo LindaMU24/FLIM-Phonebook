@@ -21,7 +21,6 @@ public class Phonebook {
         profiles.add(new Profile("Ned", "Andersson", 38, phoneNumber,new Address("Väderstad", 59636, "Folkungavägen", "1B")));
         profiles.add(new Profile("Beth", "Andersson", 38, phoneNumber,new Address("Väderstad", 59636, "Folkungavägen", "1B")));
         profiles.add(new Profile("Zid", "Andersson", 38, phoneNumber,new Address("Väderstad", 59636, "Folkungavägen", "1B")));
-
     }
-
+//test
 }
