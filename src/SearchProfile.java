@@ -48,4 +48,5 @@ public class SearchProfile {
         }
         return matchingProfiles;
     }
+
 }
