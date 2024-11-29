@@ -60,7 +60,7 @@ public abstract class User {
                 System.out.println("Please enter you password:  ");
                 password = "password"; //InputHandler.getString();
                 for(AdminUser adminUser : adminUsers){
-                    if(password.equals(adminUsers.contains(userName)){
+                    if(password.equals(adminUsers.contains(userName))){
                         break;
                     }
                     System.out.println("Wrong password!");
