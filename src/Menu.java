@@ -1,3 +1,5 @@
+import user.AdminUser;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,16 +22,21 @@ public abstract class Menu {
     }
 
     public static void nonAdminMenu(){
+        System.out.println("Please enter your name: ");
+        String name = InputHandler.getToString();
         boolean running = true;
         while(running){
-            System.out.println("##   Welcome to the phonebook!   ##");
+            System.out.println("##   Welcome to the phonebook, " + name + "!   ##");
             System.out.println("What do you want to do?\n");
             System.out.println("1. Search");
             System.out.println("0. Quit to main menu");
             int choice = InputHandler.getIntInRange(0,1);
             switch(choice) {
                 case 1 -> searchMenu();
-                case 0 -> running = false;
+                case 0 -> {
+                    System.out.println("Goodbye, " + name + "!");
+                    running = false;
+                }
             }
         }
     }
@@ -55,7 +62,7 @@ public abstract class Menu {
                         username = true;
                         break;
                     }
-                    System.out.println("User not found!");
+                    System.out.println("user.User not found!");
                 }
 
             }
@@ -96,6 +103,7 @@ public abstract class Menu {
             System.out.println(". By last name");
             System.out.println(". By address");
             System.out.println(". Free search");
+            System.out.println("0. Go back");
             int choice = InputHandler.getIntInRange(0,1);
             switch(choice) {
                 case 1 -> {
