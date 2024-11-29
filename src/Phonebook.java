@@ -6,7 +6,8 @@ public class Phonebook {
     private static List<Profile> profiles = new ArrayList<>();
     public static boolean run(){
 
-        addInititalList();
+
+        addInitialProfilesToList();
 
         return false;
     }
@@ -26,6 +27,5 @@ public class Phonebook {
 
         return false;
     }
-
-
+//test
 }
