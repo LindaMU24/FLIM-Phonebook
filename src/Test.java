@@ -8,7 +8,7 @@ public class Test {
     }
 
     public static void testProfileConstructor(){
-        Phonebook.addInititalList();
+        Phonebook.addInitialProfilesToList();
         List<Profile> profiles = Phonebook.getProfiles();
         System.out.println(profiles.toString() + "\n");
     }
