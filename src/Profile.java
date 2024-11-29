@@ -1,6 +1,6 @@
 import java.util.List;
 
-//variablerna
+//variabler
 public class Profile {
     private String firstName;
     private String lastName;
