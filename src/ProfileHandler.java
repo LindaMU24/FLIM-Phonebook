@@ -8,24 +8,24 @@ public class ProfileHandler {
     static Scanner scanner = new Scanner(System.in);
 public static void addProfile(){
 
-
+    System.out.println("##   Add profile   ##");
     System.out.println("Enter the firstname of the person: ");
-    String firstName = scanner.nextLine();
-    System.out.println("enter the lastname of the person: ");
-    String lastName = scanner.nextLine();
+    String firstName = InputHandler.getToString();
+    System.out.println("Enter the lastname of the person: ");
+    String lastName = InputHandler.getToString();
     System.out.println("Enter the age of the person: ");
-    int age = scanner.nextInt();
+    int age = scanner.nextInt(); //kommer en ny för int
 
     addPhoneNumbers(scanner);
 
     System.out.println("Enter the city: ");
-    String city = scanner.nextLine();
+    String city = InputHandler.getToString();
     System.out.println("Enter the zipcode: ");
     int zipcode = scanner.nextInt();
     System.out.println("Enter the streetname: ");
-    String streetName = scanner.nextLine();
+    String streetName = InputHandler.getToString();
     System.out.println("Enter the streetnumber: ");
-    String streetNumber = scanner.nextLine();
+    String streetNumber = InputHandler.getToString();
 
     Address address = new Address(city, zipcode, streetName, streetNumber);
     profileList.add(new Profile(firstName, lastName, age, phoneNumbers, address));
@@ -47,7 +47,7 @@ public static void addProfile(){
         phoneNumbers.add(new PhoneNumber(phoneNumber, type));
 
         System.out.println("Do you want to add a another number? Y/N");
-        String response = scanner.nextLine();
+        String response = InputHandler.getToString();
 
         if (!response.equalsIgnoreCase("Y")){
             addMoreNumbers = false;}
