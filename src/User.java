@@ -50,7 +50,7 @@ public abstract class User {
             String password;
             while(true) {
                 System.out.println("Please enter you username:  ");
-                userName = InputHandler.getString();
+                userName = "fredAdmin"; //InputHandler.getString();
                 for(AdminUser adminUser : adminUsers){
                     if(userName.equals(adminUser.getUserName())){
                         break;
@@ -58,12 +58,12 @@ public abstract class User {
                     System.out.println("User not found!");
                 }
                 System.out.println("Please enter you password:  ");
-                password = InputHandler.getString();
+                password = "password"; //InputHandler.getString();
                 for(AdminUser adminUser : adminUsers){
-                    if(password.equals(userName.getPassword())){
+                    if(password.equals(adminUsers.contains(userName)){
                         break;
                     }
-                    System.out.println("User not found!");
+                    System.out.println("Wrong password!");
                 }
             }
 
