@@ -39,6 +39,7 @@ public abstract class Menu {
         adminUsers.add(new AdminUser("fredrik", "fredAdmin", "password"));
         boolean running = true;
         boolean credentialsCheck = false;
+        String name = "";
         while(!credentialsCheck) {
             String userName;
             String password;
@@ -50,6 +51,7 @@ public abstract class Menu {
                 for (AdminUser adminUser : adminUsers) {
                     if (adminUser.getUserName().equals(userName)) {
                         index = adminUsers.indexOf(adminUser);
+                        name = adminUsers.get(index).getName();
                         username = true;
                         break;
                     }
@@ -68,7 +70,7 @@ public abstract class Menu {
             }
         }
         while (running) {
-            System.out.println("##   Welcome to the phonebook!   ##");
+            System.out.println("##   Welcome back " + name + "!   ##");
             System.out.println("##   Logged in as administrator   ##");
             System.out.println("What do you want to do?\n");
             System.out.println("1. Search");
