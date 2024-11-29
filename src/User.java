@@ -45,42 +45,47 @@ public abstract class User {
         List<AdminUser> adminUsers = new ArrayList<>();
         adminUsers.add(new AdminUser("fredrik", "fredAdmin", "password"));
         boolean running = true;
-        while(true){
+        boolean credentialsCheck = false;
+        while(!credentialsCheck) {
             String userName;
             String password;
-            while(true) {
+            int index = 0;
+            boolean username = false;
+            while (!username) {
                 System.out.println("Please enter you username:  ");
-                userName = "fredAdmin"; //InputHandler.getString();
-                for(AdminUser adminUser : adminUsers){
-                    if(userName.equals(adminUser.getUserName())){
+                userName = InputHandler.getToString();
+                for (AdminUser adminUser : adminUsers) {
+                    if (adminUser.getUserName().equals(userName)) {
+                        index = adminUsers.indexOf(adminUser);
+                        username = true;
                         break;
                     }
-                    System.out.println("User not found!");
+                System.out.println("User not found!");
                 }
-                System.out.println("Please enter you password:  ");
-                password = "password"; //InputHandler.getString();
-                for(AdminUser adminUser : adminUsers){
-                    if(password.equals(adminUsers.contains(userName))){
-                        break;
-                    }
-                    System.out.println("Wrong password!");
-                }
+
             }
-
-
+            while (true) {
+                System.out.println("Please enter you password:  ");
+                password = InputHandler.getToString();
+                if (adminUsers.get(index).getPassword().equals(password)) {
+                    credentialsCheck = true;
+                    break;
+                }
+                System.out.println("Wrong password!");
+            }
         }
         while (running) {
         System.out.println("##   Welcome to the phonebook!   ##");
         System.out.println("##   Logged in as administrator   ##");
         System.out.println("What do you want to do?\n");
-        System.out.println("1. Search");
-        System.out.println("2. Add profile");
-        System.out.println("3. Remove profile");
-        System.out.println("4. Update profile");
+        System.out.println(". Search");
+        System.out.println("1. Add profile");
+        System.out.println(". Remove profile");
+        System.out.println(". Update profile");
         System.out.println("0. Quit to main menu");
         int choice = InputHandler.getIntInRange(0,1);
         switch(choice) {
-            case 1 -> searchMenu();
+            case 1 -> ProfileHandler.addProfile();
             case 0 -> running = false;
         }
         }
