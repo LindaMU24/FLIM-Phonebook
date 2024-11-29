@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
 public class ProfileHandler {
     static List<Profile> profileList = new ArrayList<>();
     static List<PhoneNumber> phoneNumbers = new ArrayList<>();
-    static Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in); // tabort när int inputhandler kommer
 public static void addProfile(){
 
     System.out.println("##   Add profile   ##");
@@ -29,7 +30,7 @@ public static void addProfile(){
 
     Address address = new Address(city, zipcode, streetName, streetNumber);
     profileList.add(new Profile(firstName, lastName, age, phoneNumbers, address));
-    System.out.println(profileList);
+    System.out.println("Added profile: " + profileList + "\n");
 }
 
     public List<Profile> getProfileList() {
@@ -59,7 +60,24 @@ public static void addProfile(){
 
     }
 
-    public void deleteProfile(){
-
+    public static void deleteProfile(){
+        System.out.println("##   Delete profile   ##");
+        System.out.println("Enter the firstname of the profile you want to delete.");
+        String firstName = InputHandler.getToString();
+for (Iterator<Profile> iterator = profileList.iterator(); iterator.hasNext();) {
+    Profile profile = iterator.next();{
+        if (profile.getFirstName().equals(firstName)) {
+            iterator.remove();
+            System.out.println("The profile of " + firstName + " is removed");
+            return;
+        }
     }
+        }   System.out.println(firstName + " profile is not found");
+    }
+
+
+
+
+
+
 }
