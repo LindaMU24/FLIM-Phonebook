@@ -5,18 +5,18 @@ public class Profile {
     private String firstName;
     private String lastName;
     private int age;
-    private List<String> phoneNumber;
+    private List<PhoneNumber> phoneNumbers;
     private Address address;
 
     public Profile() {
 
     }
 
-    public Profile(String firstName, String lastName, int age, List<String> phoneNumber, Address address) {
+    public Profile(String firstName, String lastName, int age, List<PhoneNumber> phoneNumbers, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        this.phoneNumber = phoneNumber;
+        this.phoneNumbers = phoneNumbers;
         this.address = address;
     }
 
@@ -44,12 +44,12 @@ public class Profile {
         this.age = age;
     }
 
-    public List<String> getPhoneNumber() {
-        return phoneNumber;
+    public List<PhoneNumber> getPhoneNumber() {
+        return phoneNumbers;
     }
 
-    public void setPhoneNumber(List<String> phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhoneNumber(List<PhoneNumber> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
     }
 
     public Address getAddress() {
@@ -66,7 +66,7 @@ public class Profile {
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
-                ", phoneNumber=" + phoneNumber +
+                ", phoneNumber=" + phoneNumbers +
                 ", address=" + address +
                 '}';
     }
