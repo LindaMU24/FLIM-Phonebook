@@ -38,13 +38,13 @@ public class Phonebook {
         List<PhoneNumber> phoneNumbers = new ArrayList<>();
         phoneNumbers.add(new PhoneNumber("0123456789", "work"));
         phoneNumbers.add(new PhoneNumber("986532875421", "home"));
-        profiles.add(new Profile("Lisa", "Svensson", 38, phoneNumbers,new Address("Stockholm", 12345, "Blåbärsvägen", "12")));
-        profiles.add(new Profile("Erik", "Johansson", 38, phoneNumbers,new Address("Göteborg", 54321, "Lingonstigen", "8")));
-        profiles.add(new Profile("Anna", "Nilsson", 38, phoneNumbers,new Address("Malmö", 67890, "Hallonvägen", "5")));
-        profiles.add(new Profile("Johan", "Andersson", 38, phoneNumbers,new Address("Uppsala", 11223, "Smultronstigen", "22")));
-        profiles.add(new Profile("Karin", "Larsson", 38, phoneNumbers,new Address("Linköping", 33445, "Körsbärsvägen", "14")));
-        profiles.add(new Profile("Fredrik", "Olsson", 38, phoneNumbers,new Address("Västerås", 55667, "Rönnbärsvägen", "7")));
-        profiles.add(new Profile("Anna", "Persson", 38, phoneNumbers,new Address("Örebro", 77889, "Äppelstigen", "9")));
+        profiles.add(new Profile("Lisa", "Svensson", 38, phoneNumbers,new Address("Stockholm", "12345", "Blåbärsvägen", "12")));
+        profiles.add(new Profile("Erik", "Johansson", 38, phoneNumbers,new Address("Göteborg", "54321", "Lingonstigen", "8")));
+        profiles.add(new Profile("Anna", "Nilsson", 38, phoneNumbers,new Address("Malmö", "67890", "Hallonvägen", "5")));
+        profiles.add(new Profile("Johan", "Andersson", 38, phoneNumbers,new Address("Uppsala", "11223", "Smultronstigen", "22")));
+        profiles.add(new Profile("Karin", "Larsson", 38, phoneNumbers,new Address("Linköping", "33445", "Körsbärsvägen", "14")));
+        profiles.add(new Profile("Fredrik", "Olsson", 38, phoneNumbers,new Address("Västerås", "55667", "Rönnbärsvägen", "7")));
+        profiles.add(new Profile("Anna", "Persson", 38, phoneNumbers,new Address("Örebro", "77889", "Äppelstigen", "9")));
     }
 
 }

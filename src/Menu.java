@@ -64,7 +64,7 @@ public abstract class Menu {
                         username = true;
                         break;
                     }
-                    System.out.println("user.User not found!");
+                    System.out.println("User not found!");
                 }
 
             }
@@ -115,28 +115,36 @@ public abstract class Menu {
                     System.out.println("Please enter the first name of the person you wish to find: ");
                     String query = InputHandler.getFirstName();
                     search = SearchProfile.searchFirstName(query);
-                    System.out.println(search);// Uncomment this line when the method is implemented
+                    for(Profile profile : search) {
+                        System.out.println(profile.toString());
+                    }
                 }
                 case 2 -> {
                     System.out.println("##   Search by last name   ##");
                     System.out.println("Please enter the last name of the person you wish to find: ");
                     String query = InputHandler.getLastName();
                     search = SearchProfile.searchLastName(query);
-                    System.out.println(search);// Uncomment this line when the method is implemented
+                    for(Profile profile : search) {
+                        System.out.println(profile.toString());
+                    }
                 }
                 case 3 -> {
                     System.out.println("##   Search by address   ##");
                     System.out.println("Please enter the address wish to find: ");
-//                    String query = InputHandler.getSearchAddress();
-//                    search = SearchProfile.searchAddress(query);
-//                    System.out.println(search);// Uncomment this line when the method is implemented
+                    String query = InputHandler.getLastName();
+                    search = SearchProfile.searchAddress(query);
+                    for(Profile profile : search) {
+                        System.out.println(profile.toString());
+                    }
                 }
                 case 4 -> {
                     System.out.println("##   Free search   ##");
                     System.out.println("Please enter the term you wish to search for: ");
                     String query = InputHandler.getFreeSearch();
                     search = SearchProfile.searchAll(query);
-                    System.out.println(search);// Uncomment this line when the method is implemented
+                    for(Profile profile : search) {
+                        System.out.println(profile.toString());
+                    }
                 }
                 case 0 -> running = false;
             }

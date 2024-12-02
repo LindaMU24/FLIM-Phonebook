@@ -16,9 +16,6 @@ public class Address {
 
     }
 
-    public Address(String väderstad, int i, String folkungavägen, String streetNumber) {
-    } // temporary solution
-
     public String getCity() {
         return city;
     }
@@ -49,13 +46,7 @@ public class Address {
 
     @Override
     public String toString() {
-        return "Address{" +
-                "city='" + city + '\'' +
-                ", zipCode=" + zipCode +
-                ", streetName='" + streetName + '\'' +
-                ", streetNumber='" + streetNumber + '\'' +
-                '}';
+        return streetName + " " + streetNumber +
+                "\n" + zipCode + " " + city;
     }
-
-    //Här kommer en test kommentar för att kolla att det funkar att pusha
 }
