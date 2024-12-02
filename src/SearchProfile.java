@@ -2,13 +2,13 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class SearchProfile {
-    private List<Profile> profiles;
+    private static List<Profile> profiles;
 
     public SearchProfile() {
         this.profiles = Phonebook.getProfiles();
     }
 
-    public List<Profile> searchFirstName(String firstName) {
+    public static List<Profile> searchFirstName(String firstName) {
         List<Profile> matchingFirstName = new ArrayList<>();
         for (Profile profile : profiles) {
             if (profile.getFirstName().toLowerCase().contains(firstName.toLowerCase())) {
@@ -17,7 +17,7 @@ public class SearchProfile {
         }
         return matchingFirstName;
     }
-    public List<Profile> searchLastName(String lastName) {
+    public static List<Profile> searchLastName(String lastName) {
         List<Profile> matchingLastName = new ArrayList<>();
         for (Profile profile : profiles) {
             if (profile.getLastName().toLowerCase().contains(lastName.toLowerCase())) {
@@ -26,7 +26,7 @@ public class SearchProfile {
         }
         return matchingLastName;
     }
-    public List<Profile> searchAddress(Address address) {
+    public static List<Profile> searchAddress(Address address) {
         List<Profile> matchingAddress = new ArrayList<>();
         for (Profile profile : profiles) {
             if (profile.getAddress().equals(address)) {
@@ -35,7 +35,7 @@ public class SearchProfile {
         }
         return matchingAddress;
     }
-    public List<Profile> searchAll(String searchString) {
+    public static List<Profile> searchAll(String searchString) { //Search firstname, lastname, address
         List<Profile> matchingProfiles = new ArrayList<>();
         for (Profile profile : profiles) {
             boolean matchesFirstName = profile.getFirstName().toLowerCase().contains(searchString.toLowerCase());
