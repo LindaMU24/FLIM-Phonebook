@@ -23,7 +23,7 @@ public abstract class Menu {
         }
     }
 
-    public static void nonAdminMenu(){
+    private static void nonAdminMenu(){
         System.out.println("Please enter your name: ");
         String name = InputHandler.getFirstName();
         boolean running = true;
@@ -43,7 +43,7 @@ public abstract class Menu {
         }
     }
 
-    public static void adminMenu() {
+    private static void adminMenu() {
         boolean running = checkCredentials();
         while (running) {
             System.out.println("##   Logged in as administrator   ##");
@@ -63,7 +63,7 @@ public abstract class Menu {
         }
     }
 
-    public static void searchMenu(){
+    private static void searchMenu(){
         boolean running = true;
         while(running) {
             List<Profile> search = new ArrayList<>();
