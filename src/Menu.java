@@ -113,38 +113,22 @@ public abstract class Menu {
                 case 1 -> {
                     System.out.println("##   Search by first name   ##");
                     System.out.println("Please enter the first name of the person you wish to find: ");
-                    String query = InputHandler.getFirstName();
-                    search = SearchProfile.searchFirstName(query);
-                    for(Profile profile : search) {
-                        System.out.println(profile.toString());
-                    }
+                    SearchProfile.searchFirstName(InputHandler.getFirstName());
                 }
                 case 2 -> {
                     System.out.println("##   Search by last name   ##");
                     System.out.println("Please enter the last name of the person you wish to find: ");
-                    String query = InputHandler.getLastName();
-                    search = SearchProfile.searchLastName(query);
-                    for(Profile profile : search) {
-                        System.out.println(profile.toString());
-                    }
+                    SearchProfile.searchLastName(InputHandler.getLastName());
                 }
                 case 3 -> {
                     System.out.println("##   Search by address   ##");
                     System.out.println("Please enter the address wish to find: ");
-                    String query = InputHandler.getLastName();
-                    search = SearchProfile.searchAddress(query);
-                    for(Profile profile : search) {
-                        System.out.println(profile.toString());
-                    }
+                    SearchProfile.searchAddress(InputHandler.getFreeSearch());
                 }
                 case 4 -> {
                     System.out.println("##   Free search   ##");
                     System.out.println("Please enter the term you wish to search for: ");
-                    String query = InputHandler.getFreeSearch();
-                    search = SearchProfile.searchAll(query);
-                    for(Profile profile : search) {
-                        System.out.println(profile.toString());
-                    }
+                    SearchProfile.searchAll(InputHandler.getFreeSearch());
                 }
                 case 0 -> running = false;
             }

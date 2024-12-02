@@ -35,7 +35,7 @@ public class Phonebook {
 
 
     // This is only used to populate the list of contacts at the start of the program.
-    public static void addInitialProfilesToList(){
+    private static void addInitialProfilesToList(){
         List<PhoneNumber> phoneNumbers = new ArrayList<>();
         phoneNumbers.add(new PhoneNumber("0123456789", "work"));
         phoneNumbers.add(new PhoneNumber("986532875421", "home"));
