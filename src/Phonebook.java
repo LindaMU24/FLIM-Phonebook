@@ -44,7 +44,7 @@ public class Phonebook {
         profiles.add(new Profile("Johan", "Andersson", 38, phoneNumbers,new Address("Uppsala", 11223, "Smultronstigen", "22")));
         profiles.add(new Profile("Karin", "Larsson", 38, phoneNumbers,new Address("Linköping", 33445, "Körsbärsvägen", "14")));
         profiles.add(new Profile("Fredrik", "Olsson", 38, phoneNumbers,new Address("Västerås", 55667, "Rönnbärsvägen", "7")));
-        profiles.add(new Profile("Maria", "Persson", 38, phoneNumbers,new Address("Örebro", 77889, "Äppelstigen", "9")));
+        profiles.add(new Profile("Anna", "Persson", 38, phoneNumbers,new Address("Örebro", 77889, "Äppelstigen", "9")));
     }
 
 }
