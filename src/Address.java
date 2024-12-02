@@ -8,7 +8,7 @@ public class Address {
     public Address() {
     }
 
-    public Address(String city, String zipCode, String streetName, String streetNumber){
+    public Address(String city, String zipCode, String streetName, String streetNumber) {
         this.city = city;
         this.zipCode = zipCode;
         this.streetName = streetName;
@@ -16,46 +16,42 @@ public class Address {
 
     }
 
-//    public Address(String väderstad, int i, String folkungavägen, String streetNumber) {
-//    } // temporary solution
-
     public String getCity() {
         return city;
     }
 
     public void setCity(String city) {
-        this.city = city;}
+        this.city = city;
+    }
 
     public String getZipCode() {
         return zipCode;
     }
 
     public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;}
+        this.zipCode = zipCode;
+    }
 
     public String getStreetName() {
         return streetName;
     }
 
     public void setStreetName(String streetName) {
-        this.streetName = streetName;}
+        this.streetName = streetName;
+    }
 
     public String getStreetNumber() {
         return streetNumber;
     }
 
     public void setStreetNumber(String streetNumber) {
-        this.streetNumber = streetNumber;}
+        this.streetNumber = streetNumber;
+    }
 
     @Override
     public String toString() {
-        return "Address{" +
-                "city='" + city + '\'' +
-                ", zipCode=" + zipCode +
-                ", streetName='" + streetName + '\'' +
-                ", streetNumber='" + streetNumber + '\'' +
-                '}';
+        return streetName + " " + streetNumber +
+        "\n" + zipCode + " " + city;
     }
 
-    //Här kommer en test kommentar för att kolla att det funkar att pusha
 }
