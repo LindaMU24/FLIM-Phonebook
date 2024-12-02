@@ -87,7 +87,7 @@ public abstract class Menu {
             System.out.println("3. Remove profile");
             System.out.println(". Update profile");
             System.out.println("0. Quit to main menu");
-            int choice = InputHandler.getIntInRange(0,1);
+            int choice = InputHandler.getIntInRange(0,3);
             switch(choice) {
                 case 1 -> searchMenu();
                 case 2 -> ProfileHandler.addProfile();
