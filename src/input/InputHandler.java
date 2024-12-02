@@ -29,7 +29,7 @@ public class InputHandler {
         while (true) {
             while (!(scanner.hasNextInt())) {
                 scanner.nextLine();
-                System.out.println("Invalid input. Enter an integer between " + min + " and " + max +".");
+                System.out.println("Invalid input. Enter an Integer between " + min + " and " + max + ".");
             }
             int input = scanner.nextInt();
             if (input >= min && input <= max) {
@@ -37,6 +37,9 @@ public class InputHandler {
                 return input;
             }
             scanner.next();
+
+
+
         }
     }
 

@@ -26,10 +26,12 @@ public class SearchProfile {
         }
         return matchingLastName;
     }
-    public static List<Profile> searchAddress(Address address) {
+    public static List<Profile> searchAddress(String searchString) {
         List<Profile> matchingAddress = new ArrayList<>();
         for (Profile profile : Phonebook.getProfiles()) {
-            if (profile.getAddress().equals(address)) {
+            boolean matchesStreetName = profile.getAddress().getStreetName().toLowerCase().contains(searchString.toLowerCase());
+            boolean matchesCity = profile.getAddress().getCity().toLowerCase().contains(searchString.toLowerCase());
+            if (matchesStreetName || matchesCity) {
                 matchingAddress.add(profile);
             }
         }
@@ -48,4 +50,5 @@ public class SearchProfile {
         }
         return matchingProfiles;
     }
+
 }
