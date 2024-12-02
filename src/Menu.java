@@ -44,42 +44,8 @@ public abstract class Menu {
     }
 
     public static void adminMenu() {
-        List<AdminUser> adminUsers = new ArrayList<>();
-        adminUsers.add(new AdminUser("fredrik", "fredAdmin", "password"));
-        boolean running = true;
-        boolean credentialsCheck = false;
-        String name = "";
-        while(!credentialsCheck) {
-            String userName;
-            String password;
-            int index = 0;
-            boolean username = false;
-            while (!username) {
-                System.out.println("Please enter you username:  ");
-                userName = InputHandler.getUserName();
-                for (AdminUser adminUser : adminUsers) {
-                    if (adminUser.getUserName().equals(userName)) {
-                        index = adminUsers.indexOf(adminUser);
-                        name = adminUsers.get(index).getName();
-                        username = true;
-                        break;
-                    }
-                    System.out.println("User not found!");
-                }
-
-            }
-            while (true) {
-                System.out.println("Please enter you password:  ");
-                password = InputHandler.getPassword();
-                if (adminUsers.get(index).getPassword().equals(password)) {
-                    credentialsCheck = true;
-                    break;
-                }
-                System.out.println("Wrong password!");
-            }
-        }
+        boolean running = checkCredentials();
         while (running) {
-            System.out.println("##   Welcome back " + name + "!   ##");
             System.out.println("##   Logged in as administrator   ##");
             System.out.println("What do you want to do?\n");
             System.out.println("1. Search");
@@ -134,4 +100,63 @@ public abstract class Menu {
             }
         }
     }
+
+
+    private static boolean checkCredentials(){
+        List<AdminUser> adminUsers = new ArrayList<>();
+        adminUsers.add(new AdminUser("Fredrik", "fredAdmin", "password"));
+        adminUsers.add(new AdminUser("Ivana", "ivanaAdmin", "password"));
+        adminUsers.add(new AdminUser("Linda", "lindaAdmin", "password"));
+        adminUsers.add(new AdminUser("Madde", "maddeAdmin", "password"));
+        boolean credentialsCheck = false;
+        boolean accessGranted = false;
+        boolean passwordCheck = false;
+        String name = "";
+        while(!credentialsCheck) {
+            String userName;
+            String password;
+            int index = 0;
+            boolean username = false;
+            while (!username) {
+                System.out.println("Please enter you username:  ");
+                System.out.println("Enter 0(zero) to abort login. ");
+                userName = InputHandler.getUserName();
+                if (userName.equals("0")) {
+                    passwordCheck = true;
+                    credentialsCheck = true;
+                    break;
+                }else {
+                    for (AdminUser adminUser : adminUsers) {
+                        if (adminUser.getUserName().equals(userName)) {
+                            index = adminUsers.indexOf(adminUser);
+                            name = adminUsers.get(index).getName();
+                            username = true;
+                            break;
+                        }
+                        System.out.println("User not found!");
+                    }
+                }
+            }
+            while (!passwordCheck) {
+                System.out.println("Please enter you password:  ");
+                System.out.println("Enter 0(zero) to abort login. ");
+                password = InputHandler.getPassword();
+                    if (password.equals("0")) {
+                        passwordCheck = true;
+                        credentialsCheck = true;
+                        break;
+                    }else {
+                    if (adminUsers.get(index).getPassword().equals(password)) {
+                        credentialsCheck = true;
+                        accessGranted = true;
+                        System.out.println("##   Welcome back " + name + "!   ##");
+                        break;
+                    }
+                    System.out.println("Wrong password!");
+                }
+                }
+        }
+    return accessGranted;
+    }
+
 }
