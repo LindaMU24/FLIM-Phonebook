@@ -101,7 +101,6 @@ public abstract class Menu {
         }
     }
 
-
     private static boolean checkCredentials(){
         List<AdminUser> adminUsers = new ArrayList<>();
         adminUsers.add(new AdminUser("Fredrik", "fredAdmin", "password"));
@@ -133,6 +132,8 @@ public abstract class Menu {
                             username = true;
                             break;
                         }
+                    }
+                    if(!username){
                         System.out.println("User not found!");
                     }
                 }
@@ -153,8 +154,8 @@ public abstract class Menu {
                         break;
                     }
                     System.out.println("Wrong password!");
-                }
-                }
+                    }
+            }
         }
     return accessGranted;
     }
