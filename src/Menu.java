@@ -1,3 +1,5 @@
+import input.InputHandler;
+import input.AccessMode;
 import user.AdminUser;
 
 import java.util.ArrayList;
@@ -12,18 +14,18 @@ public abstract class Menu {
             System.out.println("1. User");
             System.out.println("2. Admin");
             System.out.println("0. Exit");
-            int choice = InputHandler.getIntInRange(0,2);
-            switch(choice) {
-                case 1 -> nonAdminMenu();
-                case 2 -> adminMenu();
-                case 0 -> running = false;
+            AccessMode mode = InputHandler.getMode();
+            switch(mode) {
+                case AccessMode.USER -> nonAdminMenu();
+                case AccessMode.ADMIN -> adminMenu();
+                case AccessMode.EXITING -> running = false;
             }
         }
     }
 
     public static void nonAdminMenu(){
         System.out.println("Please enter your name: ");
-        String name = InputHandler.getToString();
+        String name = InputHandler.getFirstName();
         boolean running = true;
         while(running){
             System.out.println("##   Welcome to the phonebook, " + name + "!   ##");
@@ -54,7 +56,7 @@ public abstract class Menu {
             boolean username = false;
             while (!username) {
                 System.out.println("Please enter you username:  ");
-                userName = InputHandler.getToString();
+                userName = InputHandler.getUserName();
                 for (AdminUser adminUser : adminUsers) {
                     if (adminUser.getUserName().equals(userName)) {
                         index = adminUsers.indexOf(adminUser);
@@ -68,7 +70,7 @@ public abstract class Menu {
             }
             while (true) {
                 System.out.println("Please enter you password:  ");
-                password = InputHandler.getToString();
+                password = InputHandler.getPassword();
                 if (adminUsers.get(index).getPassword().equals(password)) {
                     credentialsCheck = true;
                     break;
@@ -110,25 +112,25 @@ public abstract class Menu {
                 case 1 -> {
                     System.out.println("##   Search by first name   ##");
                     System.out.println("Please enter the first name of the person you wish to find: ");
-                    String query = InputHandler.getToString();
+                    String query = InputHandler.getFirstName();
 //                    SearchProfile.searchFirstName(query); // Uncomment this line when the method is implemented
                 }
                 case 2 -> {
                     System.out.println("##   Search by last name   ##");
                     System.out.println("Please enter the last name of the person you wish to find: ");
-                    String query = InputHandler.getToString();
+                    String query = InputHandler.getLastName();
 //                    SearchProfile.searchLastName(query); // Uncomment this line when the method is implemented
                 }
                 case 3 -> {
                     System.out.println("##   Search by address   ##");
                     System.out.println("Please enter the address wish to find: ");
-                    String query = InputHandler.getToString();
+                    String query = InputHandler.getSearchAddress();
 //                    SearchProfile.searchAddress(query); // Uncomment this line when the method is implemented
                 }
                 case 4 -> {
                     System.out.println("##   Free search   ##");
                     System.out.println("Please enter the term you wish to search for: ");
-                    String query = InputHandler.getToString();
+                    String query = InputHandler.getFreeSearch();
 //                    SearchProfile.searchAll(query); // Uncomment this line when the method is implemented
                 }
                 case 0 -> running = false;
