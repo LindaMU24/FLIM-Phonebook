@@ -127,9 +127,9 @@ public abstract class Menu {
                 case 3 -> {
                     System.out.println("##   Search by address   ##");
                     System.out.println("Please enter the address wish to find: ");
-//                    String query = InputHandler.getSearchAddress();
-//                    search = SearchProfile.searchAddress(query);
-//                    System.out.println(search);// Uncomment this line when the method is implemented
+                   String query = InputHandler.getLastName();
+                   search = SearchProfile.searchAddress(query);
+                   System.out.println(search);// Uncomment this line when the method is implemented
                 }
                 case 4 -> {
                     System.out.println("##   Free search   ##");

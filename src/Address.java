@@ -16,8 +16,8 @@ public class Address {
 
     }
 
-    public Address(String väderstad, int i, String folkungavägen, String streetNumber) {
-    } // temporary solution
+//    public Address(String väderstad, int i, String folkungavägen, String streetNumber) {
+//    } // temporary solution
 
     public String getCity() {
         return city;
