@@ -60,14 +60,30 @@ public class Profile {
         this.address = address;
     }
 
+    public String printPhoneNumbers() {
+        String phoneNumbersString = "";
+        for (PhoneNumber phoneNumber : phoneNumbers) {
+            phoneNumbersString += phoneNumber + "\n";
+        }
+        return phoneNumbersString;
+    }
+
+
     @Override
     public String toString() {
-        return "Profile{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                ", phoneNumber=" + phoneNumbers +
-                ", address=" + address +
-                '}';
+        return "\n" + firstName + " " + lastName + ", " + age +
+                "\n" + address +
+                "\n" + printPhoneNumbers();
+
     }
+
+//    @Override
+//    public String toString() {
+//        return "\nProfile" +
+//                "\nFirst name: " + firstName +
+//                "\nLast name: " + lastName +
+//                "\nAge:" + age +
+//                "\n" + printPhoneNumbers() +
+//                "\n" + address;
+//    }
 }

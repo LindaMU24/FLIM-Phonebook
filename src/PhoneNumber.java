@@ -22,9 +22,6 @@ public class PhoneNumber {
 
     @Override
     public String toString() {
-        return "PhoneNumber{" +
-                "number='" + number + '\'' +
-                ", type='" + type + '\'' +
-                '}';
+        return type.substring(0,1).toUpperCase() + type.substring(1).toLowerCase() + " number: " + number;
     }
 }
