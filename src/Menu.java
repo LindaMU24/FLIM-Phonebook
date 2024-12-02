@@ -87,7 +87,7 @@ public abstract class Menu {
             System.out.println("3. Remove profile");
             System.out.println(". Update profile");
             System.out.println("0. Quit to main menu");
-            int choice = InputHandler.getIntInRange(0,1);
+            int choice = InputHandler.getIntInRange(0,3);
             switch(choice) {
                 case 1 -> searchMenu();
                 case 2 -> ProfileHandler.addProfile();
@@ -100,6 +100,7 @@ public abstract class Menu {
     public static void searchMenu(){
         boolean running = true;
         while(running) {
+            List<Profile> search = new ArrayList<>();
             System.out.println("##   Search   ##");
             System.out.println("Please select search method: \n");
             System.out.println("1. By first name");
@@ -113,25 +114,29 @@ public abstract class Menu {
                     System.out.println("##   Search by first name   ##");
                     System.out.println("Please enter the first name of the person you wish to find: ");
                     String query = InputHandler.getFirstName();
-//                    SearchProfile.searchFirstName(query); // Uncomment this line when the method is implemented
+                    search = SearchProfile.searchFirstName(query);
+                    System.out.println(search);// Uncomment this line when the method is implemented
                 }
                 case 2 -> {
                     System.out.println("##   Search by last name   ##");
                     System.out.println("Please enter the last name of the person you wish to find: ");
                     String query = InputHandler.getLastName();
-//                    SearchProfile.searchLastName(query); // Uncomment this line when the method is implemented
+                    search = SearchProfile.searchLastName(query);
+                    System.out.println(search);// Uncomment this line when the method is implemented
                 }
                 case 3 -> {
                     System.out.println("##   Search by address   ##");
                     System.out.println("Please enter the address wish to find: ");
-                    String query = InputHandler.getSearchAddress();
-//                    SearchProfile.searchAddress(query); // Uncomment this line when the method is implemented
+//                    String query = InputHandler.getSearchAddress();
+//                    search = SearchProfile.searchAddress(query);
+//                    System.out.println(search);// Uncomment this line when the method is implemented
                 }
                 case 4 -> {
                     System.out.println("##   Free search   ##");
                     System.out.println("Please enter the term you wish to search for: ");
                     String query = InputHandler.getFreeSearch();
-//                    SearchProfile.searchAll(query); // Uncomment this line when the method is implemented
+                    search = SearchProfile.searchAll(query);
+                    System.out.println(search);// Uncomment this line when the method is implemented
                 }
                 case 0 -> running = false;
             }

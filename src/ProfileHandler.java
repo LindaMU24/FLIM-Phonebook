@@ -10,7 +10,6 @@ public class ProfileHandler {
     static List<PhoneNumber> phoneNumbers = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in); // tabort när int inputhandler kommer
 public static void addProfile(){
-
     System.out.println("##   Add profile   ##");
     System.out.println("Enter the firstname of the person: ");
     String firstName = InputHandler.getFirstName();
@@ -31,8 +30,9 @@ public static void addProfile(){
     String streetNumber = InputHandler.getStreetNumber();
 
     Address address = new Address(city, zipcode, streetName, streetNumber);
-    Phonebook.addProfile(new Profile(firstName, lastName, age, phoneNumbers, address));
-    System.out.println("Added profile: " + profileList + "\n");
+    Profile profileToAdd = new Profile(firstName, lastName, age, phoneNumbers, address);
+    Phonebook.addProfile(profileToAdd);
+    System.out.println("Added profile: " + profileToAdd + "\n");
 }
 
     public List<Profile> getProfileList() {
@@ -66,14 +66,14 @@ public static void addProfile(){
         System.out.println("##   Delete profile   ##");
         System.out.println("Enter the firstname of the profile you want to delete.");
         String firstName = InputHandler.getFirstName();
-for (Iterator<Profile> iterator = profileList.iterator(); iterator.hasNext();) {
-    Profile profile = iterator.next();{
-        if (profile.getFirstName().equals(firstName)) {
-            iterator.remove();
-            System.out.println("The profile of " + firstName + " is removed");
-            return;
-        }
-    }
+        for (Iterator<Profile> iterator = Phonebook.getProfiles().iterator(); iterator.hasNext();) {
+            Profile profile = iterator.next();{
+                if (profile.getFirstName().equals(firstName)) {
+                    iterator.remove();
+                    System.out.println("The profile of " + firstName + " is removed");
+                    return;
+                }
+            }
         }   System.out.println(firstName + " profile is not found");
     }
 
