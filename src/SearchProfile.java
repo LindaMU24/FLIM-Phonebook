@@ -1,3 +1,5 @@
+import input.InputHandler;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -8,25 +10,27 @@ public class SearchProfile {
         this.profiles = Phonebook.getProfiles();
     }
 
-    public static List<Profile> searchFirstName(String firstName) {
+    public static void searchFirstName(String firstName) {
         List<Profile> matchingFirstName = new ArrayList<>();
         for (Profile profile : Phonebook.getProfiles()) {
             if (profile.getFirstName().toLowerCase().contains(firstName.toLowerCase())) {
                 matchingFirstName.add(profile);
             }
         }
-        return matchingFirstName;
+        printSearchResult(matchingFirstName);
     }
-    public static List<Profile> searchLastName(String lastName) {
+
+    public static void searchLastName(String lastName) {
         List<Profile> matchingLastName = new ArrayList<>();
         for (Profile profile : Phonebook.getProfiles()) {
             if (profile.getLastName().toLowerCase().contains(lastName.toLowerCase())) {
                 matchingLastName.add(profile);
             }
         }
-        return matchingLastName;
+        printSearchResult(matchingLastName);
     }
-    public static List<Profile> searchAddress(String searchString) {
+
+    public static void searchAddress(String searchString) {
         List<Profile> matchingAddress = new ArrayList<>();
         for (Profile profile : Phonebook.getProfiles()) {
             boolean matchesStreetName = profile.getAddress().getStreetName().toLowerCase().contains(searchString.toLowerCase());
@@ -35,9 +39,10 @@ public class SearchProfile {
                 matchingAddress.add(profile);
             }
         }
-        return matchingAddress;
+        printSearchResult(matchingAddress);
     }
-    public static List<Profile> searchAll(String searchString) { //Search firstname, lastname, address
+
+    public static void searchAll(String searchString) { //Search firstname, lastname, address
         List<Profile> matchingProfiles = new ArrayList<>();
         for (Profile profile : Phonebook.getProfiles()) {
             boolean matchesFirstName = profile.getFirstName().toLowerCase().contains(searchString.toLowerCase());
@@ -48,7 +53,16 @@ public class SearchProfile {
                 matchingProfiles.add(profile);
             }
         }
-        return matchingProfiles;
+        printSearchResult(matchingProfiles);
     }
 
+    public static void printSearchResult(List<Profile> profiles){
+        if (!profiles.isEmpty()){
+            for(Profile profile : profiles) {
+                System.out.println(profile.toString());
+            }
+        }else {
+            System.out.println("No profiles found");
+        }
+    }
 }
