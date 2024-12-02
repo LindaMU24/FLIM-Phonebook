@@ -35,7 +35,7 @@ public class SearchProfile {
         }
         return matchingAddress;
     }
-    public static List<Profile> searchAll(String searchString) {
+    public static List<Profile> searchAll(String searchString) { //Search firstname, lastname, address
         List<Profile> matchingProfiles = new ArrayList<>();
         for (Profile profile : profiles) {
             boolean matchesFirstName = profile.getFirstName().toLowerCase().contains(searchString.toLowerCase());
