@@ -10,7 +10,7 @@ public class SearchProfile {
 
     public static List<Profile> searchFirstName(String firstName) {
         List<Profile> matchingFirstName = new ArrayList<>();
-        for (Profile profile : profiles) {
+        for (Profile profile : Phonebook.getProfiles()) {
             if (profile.getFirstName().toLowerCase().contains(firstName.toLowerCase())) {
                 matchingFirstName.add(profile);
             }
@@ -19,7 +19,7 @@ public class SearchProfile {
     }
     public static List<Profile> searchLastName(String lastName) {
         List<Profile> matchingLastName = new ArrayList<>();
-        for (Profile profile : profiles) {
+        for (Profile profile : Phonebook.getProfiles()) {
             if (profile.getLastName().toLowerCase().contains(lastName.toLowerCase())) {
                 matchingLastName.add(profile);
             }
@@ -28,7 +28,7 @@ public class SearchProfile {
     }
     public static List<Profile> searchAddress(Address address) {
         List<Profile> matchingAddress = new ArrayList<>();
-        for (Profile profile : profiles) {
+        for (Profile profile : Phonebook.getProfiles()) {
             if (profile.getAddress().equals(address)) {
                 matchingAddress.add(profile);
             }
@@ -37,7 +37,7 @@ public class SearchProfile {
     }
     public static List<Profile> searchAll(String searchString) { //Search firstname, lastname, address
         List<Profile> matchingProfiles = new ArrayList<>();
-        for (Profile profile : profiles) {
+        for (Profile profile : Phonebook.getProfiles()) {
             boolean matchesFirstName = profile.getFirstName().toLowerCase().contains(searchString.toLowerCase());
             boolean matchesLastName = profile.getLastName().toLowerCase().contains(searchString.toLowerCase());
             boolean matchesAddress = profile.getAddress().toString().toLowerCase().contains(searchString.toLowerCase());

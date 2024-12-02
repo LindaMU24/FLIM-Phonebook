@@ -31,7 +31,7 @@ public static void addProfile(){
     String streetNumber = InputHandler.getStreetNumber();
 
     Address address = new Address(city, zipcode, streetName, streetNumber);
-    profileList.add(new Profile(firstName, lastName, age, phoneNumbers, address));
+    Phonebook.addProfile(new Profile(firstName, lastName, age, phoneNumbers, address));
     System.out.println("Added profile: " + profileList + "\n");
 }
 
