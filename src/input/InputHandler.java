@@ -28,14 +28,13 @@ public class InputHandler {
     public static int getIntInRange(int min, int max) {
         while (true) {
             while (!(scanner.hasNextInt())) {
-                scanner.next();
+                scanner.nextLine();
             }
             int input = scanner.nextInt();
             if (input >= min && input <= max) {
-                scanner.next();
+                scanner.nextLine();
                 return input;
             }
-            System.out.println("write number between " + min + " - " + max);
             scanner.next();
 
 
@@ -101,6 +100,7 @@ public class InputHandler {
 
             System.out.println("Invalid input! Write your Zip Code as 5 digit number!");
             scanner.next();
+            return answer;
 
         }
     }
@@ -136,8 +136,9 @@ public class InputHandler {
     public static String getTypeNumber() {
         String answer = scanner.next();
         while(!(answer.equals("home") || answer.equals("work") || answer.equals("mobile"))) {
-            answer = scanner.next();
             System.out.println("Invalid input! Write 'mobile', 'home', or 'work'!");
+            answer = scanner.next();
+
         }
         return answer;
     }
