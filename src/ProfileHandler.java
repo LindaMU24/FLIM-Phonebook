@@ -3,13 +3,13 @@ import input.InputHandler;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Scanner;
+
 
 public class ProfileHandler {
     static List<Profile> profileList = new ArrayList<>();
     static List<PhoneNumber> phoneNumbers = new ArrayList<>();
-    static Scanner scanner = new Scanner(System.in); // tabort när int inputhandler kommer
 public static void addProfile(){
+
     System.out.println("##   Add profile   ##");
     System.out.println("Enter the firstname of the person: ");
     String firstName = InputHandler.getFirstName();
@@ -18,7 +18,7 @@ public static void addProfile(){
     System.out.println("Enter the age of the person: ");
     int age = InputHandler.getAge();
 
-    addPhoneNumbers(scanner);
+    addPhoneNumbers();
 
     System.out.println("Enter the city: ");
     String city = InputHandler.getCity();
@@ -39,7 +39,7 @@ public static void addProfile(){
         return profileList;
     }
 
-    public static void addPhoneNumbers(Scanner scanner){
+    public static void addPhoneNumbers(){
     boolean addMoreNumbers = true;
     while (addMoreNumbers){
         System.out.println("Enter the phonenumber: ");
@@ -68,9 +68,9 @@ public static void addProfile(){
         String firstName = InputHandler.getFirstName();
         for (Iterator<Profile> iterator = Phonebook.getProfiles().iterator(); iterator.hasNext();) {
             Profile profile = iterator.next();{
-                if (profile.getFirstName().equals(firstName)) {
+                if (profile.getFirstName().equalsIgnoreCase(firstName)) {
                     iterator.remove();
-                    System.out.println("The profile of " + firstName + " is removed");
+                    System.out.println("The profile of " + firstName + " is removed\n");
                     return;
                 }
             }
