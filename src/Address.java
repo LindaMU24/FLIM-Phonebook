@@ -48,6 +48,15 @@ public class Address {
         this.streetNumber = streetNumber;
     }
 
+    public void setAddress(String city, String zipcode, String streetName, String streetNumber){
+        this.city = city;
+        this.zipCode = zipcode;
+        this.streetName = streetName;
+        this.streetNumber = streetNumber;
+    }
+
+
+
     @Override
     public String toString() {
         return streetName + " " + streetNumber +
