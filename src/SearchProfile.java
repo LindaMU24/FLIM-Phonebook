@@ -25,7 +25,7 @@ List<Profile> matchingLastName = new ArrayList<>();
 for (Profile profile : Phonebook.getProfiles()) {
             if (profile.getLastName().toLowerCase().contains(lastName.toLowerCase())) {
                 matchingLastName.add(profile);
-                break;
+                break; // Kommentera bort denna rad om man vill visa alla sökresultat
            }
       }
        printSearchResult(matchingLastName);
