@@ -75,6 +75,7 @@ public class Phonebook {
     }
 
     private static void readFromFile() {
+        List<Profile> tempProfiles = new ArrayList<>();
 
         try {
             File file = new File("phonebook.txt");
@@ -103,8 +104,9 @@ public class Phonebook {
                 String streetName = reader.nextLine();
                 String streetNumber = reader.nextLine();
                 reader.nextLine();
-                profiles.add(new Profile(firstName, lastName, age, phoneNumbers, new Address(city, zipCode, streetName, streetNumber)));
+                tempProfiles.add(new Profile(firstName, lastName, age, phoneNumbers, new Address(city, zipCode, streetName, streetNumber)));
             }
+            profiles = tempProfiles;
             reader.close();
         } catch (FileNotFoundException _) {
             System.out.println("Error reading from file phonebook.txt");
