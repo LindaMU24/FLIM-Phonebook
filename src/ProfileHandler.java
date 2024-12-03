@@ -22,9 +22,9 @@ public static void addProfile(){
     String city = InputHandler.getCity();
     System.out.println("Enter the zipcode: ");
     String zipcode = InputHandler.getZipCode();        // change from int to string
-    System.out.println("Enter the streetname: ");
+    System.out.println("Enter the street name: ");
     String streetName = InputHandler.getStreetName();
-    System.out.println("Enter the streetnumber: ");
+    System.out.println("Enter the street number: ");
     String streetNumber = InputHandler.getStreetNumber();
 
     Address address = new Address(city, zipcode, streetName, streetNumber);
@@ -42,7 +42,7 @@ public static void addProfile(){
 
         boolean addMoreNumbers = true;
     while (addMoreNumbers){
-        System.out.println("Enter the phonenumber: ");
+        System.out.println("Enter the phone number: ");
         String phoneNumber = InputHandler.getPhoneNumber();
         System.out.println("Enter type of number (mobile, home, work): ");
         String type = InputHandler.getTypeNumber();
@@ -158,20 +158,22 @@ return phoneNumbers;
 //                        System.out.println("Phone number is updated to " + newPhoneNumber + " " + phoneType);
 //                        break;
                     case 5:
-                        System.out.println("Enter new address:");
+                        System.out.println("Enter new address");
                         System.out.println("City:");
                         String city = InputHandler.getCity();
                         System.out.println("Zipcode:");
                         String zipcode = InputHandler.getZipCode();
-                        System.out.println("Streetname:");
+                        System.out.println("Street name:");
                         String streetName = InputHandler.getStreetName();
-                        System.out.println("Streetnumber");
+                        System.out.println("Street number:");
                         String streetNumber = InputHandler.getStreetNumber();
                         updateNewAddress(profile, city, zipcode, streetName, streetNumber);
                         break;
                     case 0:
                             System.out.println("No changes made.");
                             return;
+                    default:
+                        System.out.println("Invalid choice, no changes made");
 
                 }
 
@@ -229,17 +231,16 @@ return phoneNumbers;
         if(choice == 0){
             System.out.println("Exit without deleting.\n");
             return;}
-        choice = choice - 1 ;
+        choice = choice - 1;
 
         if (choice >= 0 && choice < matchingProfiles.size()) {
-            Profile choosedProfile = matchingProfiles.get(0);
-
+            Profile choosedProfile = matchingProfiles.get(choice);
+Phonebook.removeProfile(choosedProfile);
             System.out.println("The profile of " + choosedProfile.getFirstName()+ " " + choosedProfile.getLastName() + " is removed\n");
         } else {
             System.out.println("Invalid choice.");
         }
     }
-
 
 
 }
