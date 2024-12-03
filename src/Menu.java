@@ -1,5 +1,4 @@
-import input.InputHandler;
-import input.AccessMode;
+import input.*;
 import user.AdminUser;
 
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ public abstract class Menu {
         }
     }
 
-    public static void nonAdminMenu(){
+    private static void nonAdminMenu(){
         System.out.println("Please enter your name: ");
         String name = InputHandler.getFirstName();
         boolean running = true;
@@ -32,10 +31,10 @@ public abstract class Menu {
             System.out.println("What do you want to do?\n");
             System.out.println("1. Search");
             System.out.println("0. Quit to main menu");
-            int choice = InputHandler.getIntInRange(0,1);
-            switch(choice) {
-                case 1 -> searchMenu();
-                case 0 -> {
+            UserMenuMode mode = InputHandler.getUserMenu();
+            switch(mode) {
+                case UserMenuMode.SEARCH -> searchMenu();
+                case UserMenuMode.EXITING -> {
                     System.out.println("Goodbye, " + name + "!");
                     running = false;
                 }
@@ -43,7 +42,7 @@ public abstract class Menu {
         }
     }
 
-    public static void adminMenu() {
+    private static void adminMenu() {
         boolean running = checkCredentials();
         while (running) {
             System.out.println("##   Logged in as administrator   ##");
@@ -53,17 +52,18 @@ public abstract class Menu {
             System.out.println("3. Remove profile");
             System.out.println(". Update profile");
             System.out.println("0. Quit to main menu");
-            int choice = InputHandler.getIntInRange(0,3);
-            switch(choice) {
-                case 1 -> searchMenu();
-                case 2 -> ProfileHandler.addProfile();
-                case 3 -> ProfileHandler.deleteProfile();
-                case 0 -> running = false;
+            AdminMenuMode mode = InputHandler.getAdminMenuMode();
+            switch(mode) {
+                case AdminMenuMode.SEARCH -> searchMenu();
+                case AdminMenuMode.ADD -> ProfileHandler.addProfile();
+                case AdminMenuMode.REMOVE -> ProfileHandler.deleteProfile();
+                //case AdminMenuMode.UPDATE -> ProfileHandler.updateProfile(); TODO: uncomment after implementation
+                case AdminMenuMode.EXITING -> running = false;
             }
         }
     }
 
-    public static void searchMenu(){
+    private static void searchMenu(){
         boolean running = true;
         while(running) {
             List<Profile> search = new ArrayList<>();
@@ -74,29 +74,29 @@ public abstract class Menu {
             System.out.println("3. By address");
             System.out.println("4. Free search");
             System.out.println("0. Go back");
-            int choice = InputHandler.getIntInRange(0,4);
-            switch(choice) {
-                case 1 -> {
+            SearchMenuMode mode = InputHandler.getSearchMenuMode();
+            switch(mode) {
+                case SearchMenuMode.BY_FIRSTNAME -> {
                     System.out.println("##   Search by first name   ##");
                     System.out.println("Please enter the first name of the person you wish to find: ");
                     SearchProfile.searchFirstName(InputHandler.getFirstName());
                 }
-                case 2 -> {
+                case SearchMenuMode.BY_LASTNAME -> {
                     System.out.println("##   Search by last name   ##");
                     System.out.println("Please enter the last name of the person you wish to find: ");
                     SearchProfile.searchLastName(InputHandler.getLastName());
                 }
-                case 3 -> {
+                case SearchMenuMode.BY_ADDRESS -> {
                     System.out.println("##   Search by address   ##");
                     System.out.println("Please enter the address wish to find: ");
                     SearchProfile.searchAddress(InputHandler.getFreeSearch());
                 }
-                case 4 -> {
+                case SearchMenuMode.FREE_SEARCH -> {
                     System.out.println("##   Free search   ##");
                     System.out.println("Please enter the term you wish to search for: ");
                     SearchProfile.searchAll(InputHandler.getFreeSearch());
                 }
-                case 0 -> running = false;
+                case SearchMenuMode.EXITING -> running = false;
             }
         }
     }

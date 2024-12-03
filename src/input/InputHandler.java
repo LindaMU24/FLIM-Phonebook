@@ -25,6 +25,74 @@ public class InputHandler {
         }
     }
 
+    public static UserMenuMode getUserMenu() {
+        while (true) {
+            while (!(scanner.hasNextInt())) {
+                scanner.next();
+            }
+            int input = scanner.nextInt();
+            switch (input) {
+                case 0:
+                    return UserMenuMode.EXITING;
+                case 1:
+                    return UserMenuMode.SEARCH;
+
+            }
+
+            System.out.println("write number between 0 and 1");
+            scanner.next();
+        }
+    }
+
+    public static AdminMenuMode getAdminMenuMode() {
+        while (true) {
+            while (!(scanner.hasNextInt())) {
+                scanner.next();
+            }
+            int input = scanner.nextInt();
+            switch (input) {
+                case 0:
+                    return AdminMenuMode.EXITING;
+                case 1:
+                    return AdminMenuMode.SEARCH;
+                case 2:
+                    return AdminMenuMode.ADD;
+                case 3:
+                    return AdminMenuMode.REMOVE;
+//                case 4:
+//                    return AdminMenuMode.UPDATE;   TODO: uncomment after implementation
+            }
+
+            System.out.println("write number between 0 and 4");
+            scanner.next();
+        }
+    }
+
+    public static SearchMenuMode getSearchMenuMode() {
+        while (true) {
+            while (!(scanner.hasNextInt())) {
+                scanner.next();
+            }
+            int input = scanner.nextInt();
+            switch (input) {
+                case 0:
+                    return SearchMenuMode.EXITING;
+                case 1:
+                    return SearchMenuMode.BY_FIRSTNAME;
+                case 2:
+                    return SearchMenuMode.BY_LASTNAME;
+                case 3:
+                    return SearchMenuMode.BY_ADDRESS;
+                case 4:
+                    return SearchMenuMode.FREE_SEARCH;
+            }
+
+            System.out.println("write number between 0 and 4");
+            scanner.next();
+        }
+    }
+
+
     public static int getIntInRange(int min, int max) {
         while (true) {
             while (!(scanner.hasNextInt())) {
@@ -37,7 +105,6 @@ public class InputHandler {
                 return input;
             }
             scanner.next();
-
 
 
         }
@@ -137,7 +204,7 @@ public class InputHandler {
 
     public static String getTypeNumber() {
         String answer = scanner.next();
-        while(!(answer.equals("home") || answer.equals("work") || answer.equals("mobile"))) {
+        while (!(answer.equals("home") || answer.equals("work") || answer.equals("mobile"))) {
             System.out.println("Invalid input! Write 'mobile', 'home', or 'work'!");
             answer = scanner.next();
 
@@ -150,11 +217,12 @@ public class InputHandler {
         return answer.equals("yes") || answer.equals("y");
     }
 
-    public static String getUserName(){
+    public static String getUserName() {
         return scanner.next();                 // what conditions must it contain
 
     }
-    public static String getPassword(){
+
+    public static String getPassword() {
         return scanner.next();                 // what conditions must it contain
 
     }
