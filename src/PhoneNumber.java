@@ -20,6 +20,11 @@ public class PhoneNumber {
         this.type = type;
     }
 
+    public void setNewPhoneNumber(String number, String type){
+        this.number = number;
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return type.substring(0,1).toUpperCase() + type.substring(1).toLowerCase() + " number: " + number;

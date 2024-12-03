@@ -123,40 +123,24 @@ return phoneNumbers;
                         System.out.println("Enter the new first name:");
                         String newFirstName = InputHandler.getFirstName();
                         profile.setFirstName(newFirstName);
+                        System.out.println("The first name is now updated to: " + newFirstName + "\n");
                         break;
                     case 2:
                         System.out.println("Enter the new last name:");
                         String newLastName = InputHandler.getLastName();
                         profile.setLastName(newLastName);
+                        System.out.println("The last name is now updated to: " + newLastName + "\n");
                         break;
                     case 3:
                         System.out.println("Enter the new age:");
                         int newAge = InputHandler.getAge();
                         profile.setAge(newAge);
+                        System.out.println("The age is now updated to: " + newAge + "\n");
                         break;
-//                    case 4:
-//                        System.out.println("Enter the new phone number");
-//                        String newPhoneNumber = InputHandler.getPhoneNumber();
-//                        System.out.println("Select the type of phone number:");
-//                        System.out.println("1. Mobile");
-//                        System.out.println("2. Home");
-//                        System.out.println("3. Work");
-//                        int phoneTypePick = InputHandler.getIntInRange(1, 3);
-//                        String phoneType = "";
-//                        switch (phoneTypePick) {
-//                            case 1:
-//                                phoneType = "Mobile";
-//                                break;
-//                            case 2:
-//                                phoneType = "Home";
-//                                break;
-//                            case 3:
-//                                phoneType = "Work";
-//                                break;
-//                        }
-//                        profile.setPhoneNumber(newPhoneNumber, phoneType);
-//                        System.out.println("Phone number is updated to " + newPhoneNumber + " " + phoneType);
-//                        break;
+                    case 4:
+
+                        updatePhoneNumber(profile);
+                        break;
                     case 5:
                         System.out.println("Enter new address");
                         System.out.println("City:");
@@ -170,19 +154,77 @@ return phoneNumbers;
                         updateNewAddress(profile, city, zipcode, streetName, streetNumber);
                         break;
                     case 0:
-                            System.out.println("No changes made.");
+                            System.out.println("No changes made. \n");
                             return;
                     default:
-                        System.out.println("Invalid choice, no changes made");
+                        System.out.println("Invalid choice, no changes made \n");
 
                 }
 
     }
 
-//public static void updateNewNumber(Profile profile, String phoneNumber, String phoneType){
-//phonenumber = new PhoneNumber(phoneNumber, phoneType);
-//profile.addPhoneNumber(phonenumber);
-//}
+public static void updatePhoneNumber(Profile profile){
+    System.out.println("Enter the type of phone number you want to add or update");
+    System.out.println("Select the type of phone number:");
+    System.out.println("1. Mobile");
+    System.out.println("2. Home");
+    System.out.println("3. Work");
+    int phoneTypePick = InputHandler.getIntInRange(1, 3);
+    String type;
+    switch (phoneTypePick) {
+        case 1:
+            type = "Mobile";
+            break;
+        case 2:
+            type = "Home";
+            break;
+        case 3:
+            type = "Work";
+            break;
+        default:
+            type = "unknown";
+            System.out.println("Invalid selection");
+            break;
+    }
+    boolean found = false;
+    for (PhoneNumber phoneNumber : profile.getPhoneNumber()){
+        if(phoneNumber.getType().trim().equalsIgnoreCase(type.trim())){
+            System.out.println("There is already a number with this type.");
+            System.out.println("Do you want to overwrite or add one more?");
+            System.out.println("1. Overwrite");
+            System.out.println("2. Add new");
+            System.out.println("0. Cancel");
+            int choice = InputHandler.getIntInRange(0,2);
+            if(choice == 0){
+                System.out.println("Cancelled\n");
+                return;
+            }
+            else if (choice == 1){
+                System.out.println("Enter new phone number:");
+                String newNumber = InputHandler.getPhoneNumber();
+                phoneNumber.setNewPhoneNumber(newNumber, type);
+                System.out.println("Phone number updated to: " + type + " " + newNumber  + "\n");
+            }else{
+                System.out.println("Enter the new phone number to add: ");
+                String newNumber = InputHandler.getPhoneNumber();
+                PhoneNumber newPhoneNumber = new PhoneNumber(newNumber, type);
+                profile.getPhoneNumber().add(newPhoneNumber);
+                System.out.println("New phone number added: " + type + " " + newNumber + "\n");
+            }
+            found = true;
+            break;
+        }
+    }
+    if(!found){
+        System.out.println("No number is existing on this type. Enter the new phone number:");
+        String newNumber = InputHandler.getPhoneNumber();
+        PhoneNumber newPhoneNumber = new PhoneNumber(newNumber, type);
+        profile.getPhoneNumber().add(newPhoneNumber);
+        System.out.println("New phone number added: " + type + " " + newNumber + "\n");
+    }
+}
+
+
     public static void updateNewAddress(Profile profile, String city, String zipcode, String streetName, String streetNumber){
 
     Address newAddress = new Address();
@@ -214,6 +256,8 @@ return phoneNumbers;
             System.out.println("Do you want to delete this profile? Yes/No");
             boolean response = InputHandler.getYesOrNoResponse();
             if (response) {
+                Phonebook.removeProfile(matchingProfiles.get(0));
+
                 System.out.println("The profile of " + firstName + " is deleted.\n");
             }else{
                 System.out.println("The profile is not deleted.\n");
