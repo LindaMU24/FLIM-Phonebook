@@ -62,8 +62,11 @@ public class Profile {
 
     private String printPhoneNumbers() {
         String phoneNumbersString = "";
-        for (PhoneNumber phoneNumber : phoneNumbers) {
-            phoneNumbersString += phoneNumber + "\n";
+        for (int i = 0; i < phoneNumbers.size(); i++) {
+            phoneNumbersString += phoneNumbers.get(i);
+            if (i != phoneNumbers.size() - 1){
+                phoneNumbersString += "\n";
+            }
         }
         return phoneNumbersString;
     }
