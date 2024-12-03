@@ -157,8 +157,8 @@ public class InputHandler {
     }
 
     public static String getZipCode() {
-        String answer = scanner.next();
         while (true) {
+            String answer = scanner.next();
             if (answer.length() == 5 && Character.isDigit(answer.charAt(0)) &&
                     Character.isDigit(answer.charAt(1)) &&
                     Character.isDigit(answer.charAt(2)) &&
@@ -166,11 +166,7 @@ public class InputHandler {
                     Character.isDigit(answer.charAt(4))) {
                 return answer;
             }
-
             System.out.println("Invalid input! Write your Zip Code as 5 digit number!");
-            scanner.next();
-            return answer;
-
         }
     }
 
@@ -213,8 +209,16 @@ public class InputHandler {
     }
 
     public static boolean getYesOrNoResponse() {
-        String answer = scanner.next().toLowerCase();
-        return answer.equals("yes") || answer.equals("y");
+        while(true){
+            String answer = scanner.next().toLowerCase();
+            if(answer.equals("yes") || answer.equals("y")){
+                return true;
+            }
+            if(answer.equals("no") || answer.equals("n")){
+                return false;
+            }
+            System.out.println("Please enter a valid choice. Y/N ");
+        }
     }
 
     public static String getUserName() {
