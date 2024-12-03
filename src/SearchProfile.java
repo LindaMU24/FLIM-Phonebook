@@ -20,15 +20,17 @@ public class SearchProfile {
         printSearchResult(matchingFirstName);
     }
 
-    public static void searchLastName(String lastName) {
-        List<Profile> matchingLastName = new ArrayList<>();
-        for (Profile profile : Phonebook.getProfiles()) {
+public static void searchLastName(String lastName) {
+List<Profile> matchingLastName = new ArrayList<>();
+for (Profile profile : Phonebook.getProfiles()) {
             if (profile.getLastName().toLowerCase().contains(lastName.toLowerCase())) {
                 matchingLastName.add(profile);
-            }
-        }
-        printSearchResult(matchingLastName);
+                break;
+           }
+      }
+       printSearchResult(matchingLastName);
     }
+
 
     public static void searchAddress(String searchString) {
         List<Profile> matchingAddress = new ArrayList<>();
