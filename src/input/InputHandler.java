@@ -62,8 +62,8 @@ public class InputHandler {
                     return AdminMenuMode.ADD;
                 case 3:
                     return AdminMenuMode.REMOVE;
-//                case 4:
-//                    return AdminMenuMode.UPDATE;
+                case 4:
+                    return AdminMenuMode.UPDATE;
                 default:
                     System.out.println("Invalid input. Please enter number between 0 and 4");
             }
@@ -114,7 +114,7 @@ public class InputHandler {
     public static String getFirstName() {
         while (true) {
             String answer = scanner.nextLine();
-            if (!answer.isEmpty() && answer.length() <= 40  && answer.matches("^[a-zA-Z]*$")) {
+            if (!answer.isEmpty() && answer.length() <= 40) {
                 return answer;
             }
             System.out.println("Invalid input! Maximum length 40 characters. Letters only.");
@@ -124,7 +124,7 @@ public class InputHandler {
     public static String getLastName() {
         while(true) {
             String answer = scanner.nextLine();
-            if (!answer.isEmpty() && answer.length() <= 50  && answer.matches("^[a-zA-Z]*$")) {
+            if (!answer.isEmpty() && answer.length() <= 50) {
                 return answer;
             }
             System.out.println("Invalid input! Maximum length  50 characters. Letters only.");
