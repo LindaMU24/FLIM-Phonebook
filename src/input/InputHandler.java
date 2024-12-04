@@ -8,9 +8,11 @@ public class InputHandler {
     public static AccessMode getMode() {
         while (true) {
             while (!(scanner.hasNextInt())) {
-                scanner.next();
+                scanner.nextLine();
+                System.out.println("Invalid input. Please enter number between 0 and 2");
             }
             int input = scanner.nextInt();
+            scanner.nextLine();
             switch (input) {
                 case 0:
                     return AccessMode.EXITING;
@@ -18,38 +20,39 @@ public class InputHandler {
                     return AccessMode.USER;
                 case 2:
                     return AccessMode.ADMIN;
+                default:
+                    System.out.println("Invalid input. Please enter number between 0 and 2");
             }
-
-            System.out.println("write number between 0 and 2");
-            scanner.next();
         }
     }
 
     public static UserMenuMode getUserMenu() {
         while (true) {
             while (!(scanner.hasNextInt())) {
-                scanner.next();
+                scanner.nextLine();
+                System.out.println("Invalid input. Please enter number between 0 and 1");
             }
             int input = scanner.nextInt();
+            scanner.nextLine();
             switch (input) {
                 case 0:
                     return UserMenuMode.EXITING;
                 case 1:
                     return UserMenuMode.SEARCH;
-
+                default:
+                    System.out.println("Invalid input. Please enter number between 0 and 1");
             }
-
-            System.out.println("write number between 0 and 1");
-            scanner.next();
         }
     }
 
     public static AdminMenuMode getAdminMenuMode() {
         while (true) {
             while (!(scanner.hasNextInt())) {
-                scanner.next();
+                scanner.nextLine();
+                System.out.println("Invalid input. Please enter number between 0 and 4");
             }
             int input = scanner.nextInt();
+            scanner.nextLine();
             switch (input) {
                 case 0:
                     return AdminMenuMode.EXITING;
@@ -59,21 +62,22 @@ public class InputHandler {
                     return AdminMenuMode.ADD;
                 case 3:
                     return AdminMenuMode.REMOVE;
-//                case 4:
-//                    return AdminMenuMode.UPDATE;   TODO: uncomment after implementation
+                case 4:
+                    return AdminMenuMode.UPDATE;
+                default:
+                    System.out.println("Invalid input. Please enter number between 0 and 4");
             }
-
-            System.out.println("write number between 0 and 4");
-            scanner.next();
         }
     }
 
     public static SearchMenuMode getSearchMenuMode() {
         while (true) {
             while (!(scanner.hasNextInt())) {
-                scanner.next();
+                scanner.nextLine();
+                System.out.println("Invalid input. Please enter number between 0 and 4");
             }
             int input = scanner.nextInt();
+            scanner.nextLine();
             switch (input) {
                 case 0:
                     return SearchMenuMode.EXITING;
@@ -85,13 +89,11 @@ public class InputHandler {
                     return SearchMenuMode.BY_ADDRESS;
                 case 4:
                     return SearchMenuMode.FREE_SEARCH;
+                default:
+                    System.out.println("Invalid input. Please enter number between 0 and 4");
             }
-
-            System.out.println("write number between 0 and 4");
-            scanner.next();
         }
     }
-
 
     public static int getIntInRange(int min, int max) {
         while (true) {
@@ -105,60 +107,57 @@ public class InputHandler {
                 return input;
             }
             scanner.next();
-
-
         }
     }
 
     public static String getFirstName() {
-        String answer = scanner.next();
-        while (answer.isEmpty() || answer.length() > 40) {
-            answer = scanner.next();
-            System.out.println("Invalid input! Write max 40 characters!");
-
+        while (true) {
+            String answer = scanner.nextLine();
+            if (!answer.isEmpty() && answer.length() <= 40 && containsValidCharactersForName(answer)) {
+                return answer;
+            }
+            System.out.println("Invalid input! Maximum length 40 characters. Letters only.");
         }
-        return answer;
     }
 
     public static String getLastName() {
-        String answer = scanner.next();
-        while (answer.isEmpty() || answer.length() > 50) {
-            System.out.println("Invalid input! Write max 50 characters!");
-            answer = scanner.next();
+        while(true) {
+            String answer = scanner.nextLine();
+            if (!answer.isEmpty() && answer.length() <= 50 && containsValidCharactersForName(answer) ) {
+                return answer;
+            }
+            System.out.println("Invalid input! Maximum length  50 characters. Letters only.");
         }
-        return answer;
     }
-
 
     public static byte getAge() {
         while (true) {
             while (!(scanner.hasNextByte())) {
                 scanner.next();
                 System.out.println("Invalid input! Write your age between 0 - 127");
-
             }
             byte age = scanner.nextByte();
             if (age >= 0) {
+                scanner.nextLine();
                 return age;
             }
             System.out.println("Invalid input! Write your age between 0 - 127");
-            scanner.next();
         }
-
     }
 
     public static String getCity() {
-        String answer = scanner.next();
-        while (answer.isEmpty() || answer.length() > 30) {
-            System.out.println("Invalid input! Write max 30 characters!");
-            answer = scanner.next();
+        while (true) {
+            String answer = scanner.nextLine();
+            if(!answer.isEmpty() && answer.length() <= 30) {
+                return answer;
+            }
+            System.out.println("Invalid input! Maximum length 30 characters.");
         }
-        return answer;
     }
 
     public static String getZipCode() {
         while (true) {
-            String answer = scanner.next();
+            String answer = scanner.nextLine();
             if (answer.length() == 5 && Character.isDigit(answer.charAt(0)) &&
                     Character.isDigit(answer.charAt(1)) &&
                     Character.isDigit(answer.charAt(2)) &&
@@ -166,76 +165,92 @@ public class InputHandler {
                     Character.isDigit(answer.charAt(4))) {
                 return answer;
             }
-            System.out.println("Invalid input! Write your Zip Code as 5 digit number!");
+            System.out.println("Invalid input! Input Zip Code as 5 digit number.");
         }
     }
 
     public static String getStreetName() {
-        String answer = scanner.next();
-        while (answer.isEmpty() || answer.length() > 20) {
-            System.out.println("Invalid input! Write max 20 characters!");
-            answer = scanner.next();
+        while(true) {
+            String answer = scanner.nextLine();
+            if (!answer.isEmpty() && answer.length() <= 20) {
+                return answer;
+            }
+            System.out.println("Invalid input! Maximum length 20 characters.");
         }
-        return answer;
     }
 
     public static String getStreetNumber() {
-        String answer = scanner.next();
-        while (answer.isEmpty() || answer.length() > 5) {
-            System.out.println("Invalid input! Write max 5 characters!");
-            answer = scanner.next();
+        while(true){
+            String answer = scanner.nextLine();
+            if (!answer.isEmpty() && answer.length() <= 5) {
+                return answer;
+            }
+            System.out.println("Invalid input! Maximum length 5 characters.");
         }
-        return answer;
     }
 
     public static String getPhoneNumber() {
-        String answer = scanner.next();
-        while (answer.isEmpty() || answer.length() > 15) {
-            System.out.println("Invalid input! Write max 15 characters!");
-            answer = scanner.next();
+        while (true) {
+            String answer = scanner.nextLine();
+            String phoneNumber = "";
+            if ((answer.length() <= 15) && (answer.matches("[0-9]+") || (answer.startsWith("+") && answer.substring(1).matches("[0-9]+")))) {
+                for(int i = 0; i < answer.length(); i++) {
+                    phoneNumber += answer.charAt(i);
+                }
+                return phoneNumber;
+            }
+            System.out.println("Invalid input! Max 15 characters. Only digits allowed. May start with a plus sign.");
         }
-        return answer;
-
     }
 
     public static String getTypeNumber() {
-        String answer = scanner.next();
-        while (!(answer.equals("home") || answer.equals("work") || answer.equals("mobile"))) {
-            System.out.println("Invalid input! Write 'mobile', 'home', or 'work'!");
-            answer = scanner.next();
-
+        while (true) {
+            String answer = scanner.nextLine();
+            if ((answer.equals("home") || answer.equals("work") || answer.equals("mobile"))) {
+                return answer;
+            }
+            System.out.println("Invalid input! Please enter 'mobile', 'home' or 'work'.");
         }
-        return answer;
     }
 
     public static boolean getYesOrNoResponse() {
         while(true){
-            String answer = scanner.next().toLowerCase();
+            String answer = scanner.nextLine().toLowerCase();
             if(answer.equals("yes") || answer.equals("y")){
                 return true;
             }
             if(answer.equals("no") || answer.equals("n")){
                 return false;
             }
-            System.out.println("Please enter a valid choice. Y/N ");
+            System.out.println("Please enter a valid choice. Yes/No ");
         }
     }
 
     public static String getUserName() {
-        return scanner.next();                 // what conditions must it contain
-
+        while(true){
+            String answer = scanner.nextLine();
+            if(!answer.isEmpty()) {
+                return answer;
+            }
+            System.out.println("Empty is not a valid input!");
+        }
     }
 
     public static String getPassword() {
-        return scanner.next();                 // what conditions must it contain
-
+        while(true){
+            String answer = scanner.nextLine();
+            if(!answer.isEmpty()) {
+                return answer;
+            }
+            System.out.println("Empty is not a valid input!");
+        }
     }
 
     public static String getSearchAddress() {
         String answer = scanner.next();
         while (answer.isEmpty() || answer.length() > 60) {
-            System.out.println("Invalid input! Write max 50 characters!");
-            answer = scanner.next();            // what conditions must it contain
+            System.out.println("Invalid input! Maximum length 60 characters!");
+            answer = scanner.next();
         }
         return answer;
     }
@@ -243,9 +258,38 @@ public class InputHandler {
     public static String getFreeSearch() {
         String answer = scanner.next();
         while (answer.isEmpty() || answer.length() > 100) {
-            System.out.println("Invalid input! Write max 100 characters!");
+            System.out.println("Invalid input! Maximum length 100 characters!");
             answer = scanner.next();
         }
-        return answer;                               // what conditions must it contain
+        return answer;
+    }
+
+    /**
+     *
+     * @param input String to check if it does not contain
+     *             anything other than  the specified characters
+     *              (letters, ¨, ^, ~, ´, `, -, :, "space" )
+     * @return  Returns true if the provided string does not
+     *          contain anything other than the permitted characters.
+     */
+    private static boolean containsValidCharactersForName(String input){
+        boolean result = false;
+        for(int i = 0; i < input.length(); i++) {
+            if(Character.isLetter(input.charAt(i)) ||
+                    input.charAt(i) == '¨'  ||
+                    input.charAt(i) == '^' ||
+                    input.charAt(i) == '~' ||
+                    input.charAt(i) == '´' ||
+                    input.charAt(i) == '`' ||
+                    input.charAt(i) == '-' ||
+                    input.charAt(i) == ':' ||
+                    input.charAt(i) == ' ') {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 }

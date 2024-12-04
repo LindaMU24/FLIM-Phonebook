@@ -1,5 +1,3 @@
-import input.InputHandler;
-
 import java.util.List;
 import java.util.ArrayList;
 
@@ -20,17 +18,16 @@ public class SearchProfile {
         printSearchResult(matchingFirstName);
     }
 
-public static void searchLastName(String lastName) {
-List<Profile> matchingLastName = new ArrayList<>();
-for (Profile profile : Phonebook.getProfiles()) {
+    public static void searchLastName(String lastName) {
+        List<Profile> matchingLastName = new ArrayList<>();
+        for (Profile profile : Phonebook.getProfiles()) {
             if (profile.getLastName().toLowerCase().contains(lastName.toLowerCase())) {
                 matchingLastName.add(profile);
                 break; // Kommentera bort denna rad om man vill visa alla sökresultat
            }
-      }
+        }
        printSearchResult(matchingLastName);
     }
-
 
     public static void searchAddress(String searchString) {
         List<Profile> matchingAddress = new ArrayList<>();
@@ -44,14 +41,28 @@ for (Profile profile : Phonebook.getProfiles()) {
         printSearchResult(matchingAddress);
     }
 
-    public static void searchAll(String searchString) { //Search firstname, lastname, address
+    public static void searchAll(String searchString) {
         List<Profile> matchingProfiles = new ArrayList<>();
+        boolean isNumeric = searchString.matches("[+]?[0-9]+"); //Allow search to include +
         for (Profile profile : Phonebook.getProfiles()) {
-            boolean matchesFirstName = profile.getFirstName().toLowerCase().contains(searchString.toLowerCase());
-            boolean matchesLastName = profile.getLastName().toLowerCase().contains(searchString.toLowerCase());
-            boolean matchesAddress = profile.getAddress().toString().toLowerCase().contains(searchString.toLowerCase());
-
-            if (matchesFirstName || matchesLastName || matchesAddress) {
+            boolean matches = false;
+            if (!isNumeric) {
+                // Focus on textsearch
+                matches = profile.getFirstName().toLowerCase().contains(searchString.toLowerCase()) ||
+                        profile.getLastName().toLowerCase().contains(searchString.toLowerCase()) ||
+                        profile.getAddress().toString().toLowerCase().contains(searchString.toLowerCase());
+            } else {
+                // Focus on numbersearch
+                int searchNumber = Integer.parseInt(searchString);
+                matches = profile.getAge() == searchNumber;
+                for (PhoneNumber phoneNumber : profile.getPhoneNumber()) {
+                    if (phoneNumber.getNumber().contains(searchString)) {
+                        matches = true;
+                        break;
+                    }
+                }
+            }
+            if (matches) {
                 matchingProfiles.add(profile);
             }
         }
@@ -67,4 +78,5 @@ for (Profile profile : Phonebook.getProfiles()) {
             System.out.println("No profiles found");
         }
     }
+
 }
