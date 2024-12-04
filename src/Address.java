@@ -13,7 +13,6 @@ public class Address {
         this.zipCode = zipCode;
         this.streetName = streetName;
         this.streetNumber = streetNumber;
-
     }
 
     public String getCity() {
@@ -54,8 +53,6 @@ public class Address {
         this.streetName = streetName;
         this.streetNumber = streetNumber;
     }
-
-
 
     @Override
     public String toString() {

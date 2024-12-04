@@ -1,5 +1,3 @@
-import input.InputHandler;
-
 import java.util.List;
 import java.util.ArrayList;
 
@@ -20,17 +18,16 @@ public class SearchProfile {
         printSearchResult(matchingFirstName);
     }
 
-public static void searchLastName(String lastName) {
-List<Profile> matchingLastName = new ArrayList<>();
-for (Profile profile : Phonebook.getProfiles()) {
+    public static void searchLastName(String lastName) {
+        List<Profile> matchingLastName = new ArrayList<>();
+        for (Profile profile : Phonebook.getProfiles()) {
             if (profile.getLastName().toLowerCase().contains(lastName.toLowerCase())) {
                 matchingLastName.add(profile);
                 break; // Kommentera bort denna rad om man vill visa alla sökresultat
            }
-      }
+        }
        printSearchResult(matchingLastName);
     }
-
 
     public static void searchAddress(String searchString) {
         List<Profile> matchingAddress = new ArrayList<>();
@@ -47,10 +44,8 @@ for (Profile profile : Phonebook.getProfiles()) {
     public static void searchAll(String searchString) {
         List<Profile> matchingProfiles = new ArrayList<>();
         boolean isNumeric = searchString.matches("[+]?[0-9]+"); //Allow search to include +
-
         for (Profile profile : Phonebook.getProfiles()) {
             boolean matches = false;
-
             if (!isNumeric) {
                 // Focus on textsearch
                 matches = profile.getFirstName().toLowerCase().contains(searchString.toLowerCase()) ||
@@ -60,7 +55,6 @@ for (Profile profile : Phonebook.getProfiles()) {
                 // Focus on numbersearch
                 int searchNumber = Integer.parseInt(searchString);
                 matches = profile.getAge() == searchNumber;
-
                 for (PhoneNumber phoneNumber : profile.getPhoneNumber()) {
                     if (phoneNumber.getNumber().contains(searchString)) {
                         matches = true;
@@ -68,15 +62,12 @@ for (Profile profile : Phonebook.getProfiles()) {
                     }
                 }
             }
-
             if (matches) {
                 matchingProfiles.add(profile);
             }
         }
-
         printSearchResult(matchingProfiles);
     }
-
 
     public static void printSearchResult(List<Profile> profiles){
         if (!profiles.isEmpty()){
@@ -87,4 +78,5 @@ for (Profile profile : Phonebook.getProfiles()) {
             System.out.println("No profiles found");
         }
     }
+
 }

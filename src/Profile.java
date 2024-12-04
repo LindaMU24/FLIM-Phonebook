@@ -9,7 +9,6 @@ public class Profile {
     private Address address;
 
     public Profile() {
-
     }
 
     public Profile(String firstName, String lastName, int age, List<PhoneNumber> phoneNumbers, Address address) {

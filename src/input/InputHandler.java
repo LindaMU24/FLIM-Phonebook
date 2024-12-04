@@ -131,7 +131,6 @@ public class InputHandler {
         }
     }
 
-
     public static byte getAge() {
         while (true) {
             while (!(scanner.hasNextByte())) {
@@ -252,7 +251,7 @@ public class InputHandler {
         String answer = scanner.next();
         while (answer.isEmpty() || answer.length() > 60) {
             System.out.println("Invalid input! Maximum length 60 characters!");
-            answer = scanner.next();            // what conditions must it contain
+            answer = scanner.next();
         }
         return answer;
     }
@@ -263,6 +262,6 @@ public class InputHandler {
             System.out.println("Invalid input! Maximum length 100 characters!");
             answer = scanner.next();
         }
-        return answer;                               // what conditions must it contain
+        return answer;
     }
 }
