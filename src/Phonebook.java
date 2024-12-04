@@ -14,7 +14,6 @@ public class Phonebook {
     public static Phonebook getInstance() {
         if (instance == null) {
             instance = new Phonebook();
-            readFromFile();
         }
         return instance;
     }
@@ -25,16 +24,13 @@ public class Phonebook {
 
     public static void addProfile(Profile profile) {
         profiles.add(profile);
-        writeToFile();
     }
 
     public static void removeProfile(Profile profile) {
         profiles.remove(profile);
-        writeToFile();
     }
 
-    private static void writeToFile() {
-
+    public static void writeToFile() {
         try (FileWriter writer = new FileWriter("phonebook.txt")) {
             for (Profile profile : profiles) {
                 writer.write("#PROFILEBEGIN\n");
@@ -59,7 +55,7 @@ public class Phonebook {
         }
     }
 
-    private static void readFromFile() {
+    public static void readFromFile() {
         List<Profile> tempProfiles = new ArrayList<>();
 
         try {
