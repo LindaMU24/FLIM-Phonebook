@@ -224,7 +224,7 @@ public class InputHandler {
             if(answer.equals("no") || answer.equals("n")){
                 return false;
             }
-            System.out.println("Please enter a valid choice. Y/N ");
+            System.out.println("Please enter a valid choice. Yes/No ");
         }
     }
 
