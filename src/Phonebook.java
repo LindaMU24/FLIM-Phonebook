@@ -39,8 +39,8 @@ public class Phonebook {
         phoneNumbersAnnaN.add(new PhoneNumber("077666542", "mobile"));
         List<PhoneNumber> phoneNumbersJohanP = new ArrayList<>();
         phoneNumbersJohanP.add(new PhoneNumber("01002000", "work"));
-        List<PhoneNumber> phoneNumbersKarinL = new ArrayList<>();
-        phoneNumbersKarinL.add(new PhoneNumber("92875421", "home"));
+        List<PhoneNumber> phoneNumbersSven = new ArrayList<>();
+        phoneNumbersSven.add(new PhoneNumber("92875421", "home"));
         List<PhoneNumber> phoneNumbersFredrikO = new ArrayList<>();
         phoneNumbersFredrikO.add(new PhoneNumber("05554333", "home"));
         phoneNumbersFredrikO.add(new PhoneNumber("+467200022", "mobile"));
@@ -51,7 +51,7 @@ public class Phonebook {
         profiles.add(new Profile("Erik", "Johansson", 28, phoneNumbersErikJ,new Address("Göteborg", "54321", "Lingonstigen", "8")));
         profiles.add(new Profile("Anna", "Nilsson", 38, phoneNumbersAnnaN,new Address("Västerås", "55667", "Hallonvägen", "5")));
         profiles.add(new Profile("Johan", "Lindström", 58, phoneNumbersJohanP,new Address("Uppsala", "11223", "Smultronstigen", "22")));
-        profiles.add(new Profile("Sven-André", "H:son-Larson dos Años", 81, phoneNumbersKarinL,new Address("Linköping", "33445", "Körsbärsvägen", "14")));
+        profiles.add(new Profile("Sven-André", "H:son-Larson dos Años", 81, phoneNumbersSven,new Address("Linköping", "33445", "Körsbärsvägen", "14")));
         profiles.add(new Profile("Fredrik", "Olsson", 22, phoneNumbersFredrikO,new Address("Västerås", "55667", "Lingonstigen", "7")));
         profiles.add(new Profile("Anna", "Persson", 58, phoneNumbersAnnaP,new Address("Örebro", "77889", "Äppelstigen", "9")));
     }
