@@ -89,7 +89,7 @@ public abstract class Menu {
                 case SearchMenuMode.BY_ADDRESS -> {
                     System.out.println("##   Search by address   ##");
                     System.out.println("Please enter the address wish to find: ");
-                    SearchProfile.searchAddress(InputHandler.getFreeSearch());
+                    SearchProfile.searchAddress(InputHandler.getSearchAddress());
                 }
                 case SearchMenuMode.FREE_SEARCH -> {
                     System.out.println("##   Free search   ##");

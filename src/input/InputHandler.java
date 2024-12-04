@@ -131,7 +131,6 @@ public class InputHandler {
         }
     }
 
-
     public static byte getAge() {
         while (true) {
             while (!(scanner.hasNextByte())) {
@@ -224,7 +223,7 @@ public class InputHandler {
             if(answer.equals("no") || answer.equals("n")){
                 return false;
             }
-            System.out.println("Please enter a valid choice. Y/N ");
+            System.out.println("Please enter a valid choice. Yes/No ");
         }
     }
 
@@ -234,7 +233,7 @@ public class InputHandler {
             if(!answer.isEmpty()) {
                 return answer;
             }
-            System.out.println("Invalid input!");
+            System.out.println("Empty is not a valid input!");
         }
     }
 
@@ -244,15 +243,15 @@ public class InputHandler {
             if(!answer.isEmpty()) {
                 return answer;
             }
-            System.out.println("Invalid input!");
+            System.out.println("Empty is not a valid input!");
         }
     }
 
     public static String getSearchAddress() {
         String answer = scanner.next();
         while (answer.isEmpty() || answer.length() > 60) {
-            System.out.println("Invalid input! Write max 50 characters!");
-            answer = scanner.next();            // what conditions must it contain
+            System.out.println("Invalid input! Maximum length 60 characters!");
+            answer = scanner.next();
         }
         return answer;
     }
@@ -260,9 +259,9 @@ public class InputHandler {
     public static String getFreeSearch() {
         String answer = scanner.next();
         while (answer.isEmpty() || answer.length() > 100) {
-            System.out.println("Invalid input! Write max 100 characters!");
+            System.out.println("Invalid input! Maximum length 100 characters!");
             answer = scanner.next();
         }
-        return answer;                               // what conditions must it contain
+        return answer;
     }
 }
