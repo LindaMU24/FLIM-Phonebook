@@ -44,10 +44,9 @@ for (Profile profile : Phonebook.getProfiles()) {
         printSearchResult(matchingAddress);
     }
 
-
     public static void searchAll(String searchString) {
         List<Profile> matchingProfiles = new ArrayList<>();
-        boolean isNumeric = searchString.matches("\\d+"); //search sequence of numbers
+        boolean isNumeric = searchString.matches("[+]?[0-9]+"); //Allow search to include +
 
         for (Profile profile : Phonebook.getProfiles()) {
             boolean matches = false;
