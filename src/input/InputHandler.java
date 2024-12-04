@@ -95,7 +95,6 @@ public class InputHandler {
         }
     }
 
-
     public static int getIntInRange(int min, int max) {
         while (true) {
             while (!(scanner.hasNextInt())) {
@@ -114,7 +113,7 @@ public class InputHandler {
     public static String getFirstName() {
         while (true) {
             String answer = scanner.nextLine();
-            if (!answer.isEmpty() && answer.length() <= 40) {
+            if (!answer.isEmpty() && answer.length() <= 40 && containsValidCharactersForName(answer)) {
                 return answer;
             }
             System.out.println("Invalid input! Maximum length 40 characters. Letters only.");
@@ -124,7 +123,7 @@ public class InputHandler {
     public static String getLastName() {
         while(true) {
             String answer = scanner.nextLine();
-            if (!answer.isEmpty() && answer.length() <= 50) {
+            if (!answer.isEmpty() && answer.length() <= 50 && containsValidCharactersForName(answer) ) {
                 return answer;
             }
             System.out.println("Invalid input! Maximum length  50 characters. Letters only.");
@@ -263,5 +262,34 @@ public class InputHandler {
             answer = scanner.next();
         }
         return answer;
+    }
+
+    /**
+     *
+     * @param input String to check if it does not contain
+     *             anything other than  the specified characters
+     *              (letters, ¨, ^, ~, ´, `, -, :, "space" )
+     * @return  Returns true if the provided string does not
+     *          contain anything other than the permitted characters.
+     */
+    private static boolean containsValidCharactersForName(String input){
+        boolean result = false;
+        for(int i = 0; i < input.length(); i++) {
+            if(Character.isLetter(input.charAt(i)) ||
+                    input.charAt(i) == '¨'  ||
+                    input.charAt(i) == '^' ||
+                    input.charAt(i) == '~' ||
+                    input.charAt(i) == '´' ||
+                    input.charAt(i) == '`' ||
+                    input.charAt(i) == '-' ||
+                    input.charAt(i) == ':' ||
+                    input.charAt(i) == ' ') {
+                result = true;
+            } else {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 }
