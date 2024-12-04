@@ -45,9 +45,42 @@ for (Profile profile : Phonebook.getProfiles()) {
     }
 
 
+//    public static void searchAll(String searchString) {
+//        List<Profile> matchingProfiles = new ArrayList<>();
+//        boolean isNumeric = searchString.matches("\\d+"); //search sequence of numbers
+//
+//        for (Profile profile : Phonebook.getProfiles()) {
+//            boolean matches = false;
+//
+//            if (!isNumeric) {
+//                // Focus on textsearch
+//                matches = profile.getFirstName().toLowerCase().contains(searchString.toLowerCase()) ||
+//                        profile.getLastName().toLowerCase().contains(searchString.toLowerCase()) ||
+//                        profile.getAddress().toString().toLowerCase().contains(searchString.toLowerCase());
+//            } else {
+//                // Focus on numbersearch
+//                int searchNumber = Integer.parseInt(searchString);
+//                matches = profile.getAge() == searchNumber;
+//
+//                for (PhoneNumber phoneNumber : profile.getPhoneNumber()) {
+//                    if (phoneNumber.getNumber().contains(searchString)) {
+//                        matches = true;
+//                        break;
+//                    }
+//                }
+//            }
+//
+//            if (matches) {
+//                matchingProfiles.add(profile);
+//            }
+//        }
+//
+//        printSearchResult(matchingProfiles);
+//    }
+
     public static void searchAll(String searchString) {
         List<Profile> matchingProfiles = new ArrayList<>();
-        boolean isNumeric = searchString.matches("\\d+"); //search sequence of numbers
+        boolean isNumeric = searchString.matches("[+]?[0-9]+"); //Allow search to include +
 
         for (Profile profile : Phonebook.getProfiles()) {
             boolean matches = false;
