@@ -19,7 +19,7 @@ Varje profil i telefonboken ska ha egenskaperna:
 •	efternamn  
 •	ålder  
 •	adress (med stad, postkod, gatunamn, portnummer)  
-•	telefonummer (en profil kan ha flera telefonnummer)    
+•	telefonnummer (en profil kan ha flera telefonnummer)    
 Sökbarhet  
 1.	Sökning på efternamn - ger profilen som först matchar med sökningen.  
 2.	Sökning på adress - ger alla profiler på samma gatunamn.  
