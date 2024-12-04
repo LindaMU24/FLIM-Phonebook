@@ -49,7 +49,7 @@ public static void addProfile(){
 
         phoneNumbers.add(new PhoneNumber(phoneNumber, type));
 
-        System.out.println("Do you want to add a another number? Y/N");
+        System.out.println("Do you want to add a another number? Yes/No");
         boolean response = InputHandler.getYesOrNoResponse();
 
         if (!response){
@@ -199,10 +199,24 @@ public static void updatePhoneNumber(Profile profile){
                 return;
             }
             else if (choice == 1){
+            List<PhoneNumber>matchingNumbers = new ArrayList<>();
+            for(PhoneNumber overwriteNumber : profile.getPhoneNumber()){
+                if (overwriteNumber.getType().trim().equalsIgnoreCase(type.trim())){
+                    matchingNumbers.add(overwriteNumber);
+                }
+            }if (!matchingNumbers.isEmpty()){
+                System.out.println("Choose number to overwrite:");
+                for(int i = 0 ; i < matchingNumbers.size() ; i++){
+                    System.out.println((i + 1) + ". " + matchingNumbers.get(i).getNumber());
+                }
+                int choiceToOverwrite = InputHandler.getIntInRange(1, matchingNumbers.size());
+                int indexToOverwrite = choiceToOverwrite - 1;
                 System.out.println("Enter new phone number:");
                 String newNumber = InputHandler.getPhoneNumber();
-                phoneNumber.setNewPhoneNumber(newNumber, type);
-                System.out.println("Phone number updated to: " + type + " " + newNumber  + "\n");
+                matchingNumbers.get(indexToOverwrite).setNewPhoneNumber(newNumber, type);
+                System.out.println("Phone number is updated to " + type + " " + newNumber + "\n");
+
+            }
             }else{
                 System.out.println("Enter the new phone number to add: ");
                 String newNumber = InputHandler.getPhoneNumber();
