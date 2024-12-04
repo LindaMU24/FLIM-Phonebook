@@ -50,14 +50,14 @@ public abstract class Menu {
             System.out.println("1. Search");
             System.out.println("2. Add profile");
             System.out.println("3. Remove profile");
-            System.out.println(". Update profile");
+            System.out.println("4. Update profile");
             System.out.println("0. Quit to main menu");
             AdminMenuMode mode = InputHandler.getAdminMenuMode();
             switch(mode) {
                 case AdminMenuMode.SEARCH -> searchMenu();
                 case AdminMenuMode.ADD -> ProfileHandler.addProfile();
                 case AdminMenuMode.REMOVE -> ProfileHandler.deleteProfile();
-                //case AdminMenuMode.UPDATE -> ProfileHandler.updateProfile(); TODO: uncomment after implementation
+                case AdminMenuMode.UPDATE -> ProfileHandler.updateProfile();
                 case AdminMenuMode.EXITING -> running = false;
             }
         }

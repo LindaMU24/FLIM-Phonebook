@@ -11,10 +11,18 @@ public class AdminUser extends User {
         this.password = password;
     }
 
+    /**
+     *  Get the username
+     * @return Returns username as String.
+     */
     public String getUserName() {
         return userName;
     }
 
+    /**
+     * Get the password
+     * @return Returns the password as String.
+     */
     public String getPassword() {
         return password;
     }
