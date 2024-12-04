@@ -88,7 +88,6 @@ return phoneNumbers;
             return;
         }
 
-
         System.out.println("Multiple profiles found. Please choose which profile you want to update:");
         for (int i = 0; i < matchingProfiles.size(); i++) {
             System.out.println((i + 1) + ". " + matchingProfiles.get(i));
@@ -225,12 +224,13 @@ public static void updatePhoneNumber(Profile profile){
 }
 
 
-    public static void updateNewAddress(Profile profile, String city, String zipcode, String streetName, String streetNumber){
+    public static void updateNewAddress(Profile profile, String city, String zipcode,
+                                        String streetName, String streetNumber){
 
     Address newAddress = new Address();
     newAddress.setAddress(city, zipcode, streetName, streetNumber);
     profile.setAddress(newAddress);
-    System.out.println("Address is updated to: " + streetName + " " + streetNumber + ", " + city + " " + zipcode);
+    System.out.println("Address is updated to: " + streetName + " " + streetNumber + ", " + zipcode + " " + city + "\n");
     }
 
     public static void deleteProfile() {
