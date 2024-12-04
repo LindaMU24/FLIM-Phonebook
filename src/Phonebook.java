@@ -51,7 +51,7 @@ public class Phonebook {
         profiles.add(new Profile("Erik", "Johansson", 28, phoneNumbersErikJ,new Address("Göteborg", "54321", "Lingonstigen", "8")));
         profiles.add(new Profile("Anna", "Nilsson", 38, phoneNumbersAnnaN,new Address("Västerås", "55667", "Hallonvägen", "5")));
         profiles.add(new Profile("Johan", "Lindström", 58, phoneNumbersJohanP,new Address("Uppsala", "11223", "Smultronstigen", "22")));
-        profiles.add(new Profile("Karin", "Larsson", 81, phoneNumbersKarinL,new Address("Linköping", "33445", "Körsbärsvägen", "14")));
+        profiles.add(new Profile("Sven-André", "H:son-Larson dos Años", 81, phoneNumbersKarinL,new Address("Linköping", "33445", "Körsbärsvägen", "14")));
         profiles.add(new Profile("Fredrik", "Olsson", 22, phoneNumbersFredrikO,new Address("Västerås", "55667", "Lingonstigen", "7")));
         profiles.add(new Profile("Anna", "Persson", 58, phoneNumbersAnnaP,new Address("Örebro", "77889", "Äppelstigen", "9")));
     }
