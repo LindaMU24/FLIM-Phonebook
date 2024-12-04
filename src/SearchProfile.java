@@ -49,9 +49,17 @@ for (Profile profile : Phonebook.getProfiles()) {
         for (Profile profile : Phonebook.getProfiles()) {
             boolean matchesFirstName = profile.getFirstName().toLowerCase().contains(searchString.toLowerCase());
             boolean matchesLastName = profile.getLastName().toLowerCase().contains(searchString.toLowerCase());
+            boolean matchesAge = profile.getAge() != 0;
             boolean matchesAddress = profile.getAddress().toString().toLowerCase().contains(searchString.toLowerCase());
+            boolean matchesPhoneNumber = false;
+            for (PhoneNumber phoneNumber : profile.getPhoneNumber()) {
+                if (phoneNumber.getNumber().contains(searchString)) {
+                    matchesPhoneNumber = true;
+                    break;
+                }
+            }
 
-            if (matchesFirstName || matchesLastName || matchesAddress) {
+            if (matchesFirstName || matchesLastName || matchesAge || matchesAddress || matchesPhoneNumber) {
                 matchingProfiles.add(profile);
             }
         }
