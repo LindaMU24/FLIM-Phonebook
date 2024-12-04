@@ -44,7 +44,6 @@ public static void addProfile(){
     while (addMoreNumbers){
         System.out.println("Enter the phone number: ");
         String phoneNumber = InputHandler.getPhoneNumber();
-        System.out.println("Enter type of number (mobile, home, work): ");
         String type = InputHandler.getTypeNumber();
 
         phoneNumbers.add(new PhoneNumber(phoneNumber, type));
@@ -163,28 +162,9 @@ return phoneNumbers;
     }
 
 public static void updatePhoneNumber(Profile profile){
-    System.out.println("Enter the type of phone number you want to add or update");
-    System.out.println("Select the type of phone number:");
-    System.out.println("1. Mobile");
-    System.out.println("2. Home");
-    System.out.println("3. Work");
-    int phoneTypePick = InputHandler.getIntInRange(1, 3);
-    String type;
-    switch (phoneTypePick) {
-        case 1:
-            type = "Mobile";
-            break;
-        case 2:
-            type = "Home";
-            break;
-        case 3:
-            type = "Work";
-            break;
-        default:
-            type = "unknown";
-            System.out.println("Invalid selection");
-            break;
-    }
+
+    String type = InputHandler.getTypeNumber();
+
     boolean found = false;
     for (PhoneNumber phoneNumber : profile.getPhoneNumber()){
         if(phoneNumber.getType().trim().equalsIgnoreCase(type.trim())){
