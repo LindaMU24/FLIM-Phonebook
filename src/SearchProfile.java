@@ -44,27 +44,40 @@ for (Profile profile : Phonebook.getProfiles()) {
         printSearchResult(matchingAddress);
     }
 
-    public static void searchAll(String searchString) { //Search firstname, lastname, address
+
+    public static void searchAll(String searchString) {
         List<Profile> matchingProfiles = new ArrayList<>();
+        boolean isNumeric = searchString.matches("\\d+"); //search sequence of numbers
+
         for (Profile profile : Phonebook.getProfiles()) {
-            boolean matchesFirstName = profile.getFirstName().toLowerCase().contains(searchString.toLowerCase());
-            boolean matchesLastName = profile.getLastName().toLowerCase().contains(searchString.toLowerCase());
-            boolean matchesAge = profile.getAge() != 0;
-            boolean matchesAddress = profile.getAddress().toString().toLowerCase().contains(searchString.toLowerCase());
-            boolean matchesPhoneNumber = false;
-            for (PhoneNumber phoneNumber : profile.getPhoneNumber()) {
-                if (phoneNumber.getNumber().contains(searchString)) {
-                    matchesPhoneNumber = true;
-                    break;
+            boolean matches = false;
+
+            if (!isNumeric) {
+                // Focus on textsearch
+                matches = profile.getFirstName().toLowerCase().contains(searchString.toLowerCase()) ||
+                        profile.getLastName().toLowerCase().contains(searchString.toLowerCase()) ||
+                        profile.getAddress().toString().toLowerCase().contains(searchString.toLowerCase());
+            } else {
+                // Focus on numbersearch
+                int searchNumber = Integer.parseInt(searchString);
+                matches = profile.getAge() == searchNumber;
+
+                for (PhoneNumber phoneNumber : profile.getPhoneNumber()) {
+                    if (phoneNumber.getNumber().contains(searchString)) {
+                        matches = true;
+                        break;
+                    }
                 }
             }
 
-            if (matchesFirstName || matchesLastName || matchesAge || matchesAddress || matchesPhoneNumber) {
+            if (matches) {
                 matchingProfiles.add(profile);
             }
         }
+
         printSearchResult(matchingProfiles);
     }
+
 
     public static void printSearchResult(List<Profile> profiles){
         if (!profiles.isEmpty()){
