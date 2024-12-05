@@ -55,6 +55,9 @@ public class SearchProfile {
                 // Focus on numbersearch
                 int searchNumber = Integer.parseInt(searchString);
                 matches = profile.getAge() == searchNumber;
+                    if (profile.getAddress().getZipCode().equals(searchString)) {
+                        matches = true;
+                    }
                 for (PhoneNumber phoneNumber : profile.getPhoneNumber()) {
                     if (phoneNumber.getNumber().contains(searchString)) {
                         matches = true;
