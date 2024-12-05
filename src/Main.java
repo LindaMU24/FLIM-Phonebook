@@ -3,6 +3,5 @@ public class Main {
         Phonebook.getInstance();
         Phonebook.readFromFile();
         Menu.mainMenu();
-        Phonebook.writeToFile();
     }
 }

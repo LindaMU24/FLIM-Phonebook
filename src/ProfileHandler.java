@@ -25,6 +25,7 @@ public class ProfileHandler {
         Address address = new Address(city, zipcode, streetName, streetNumber);
         Profile profileToAdd = new Profile(firstName, lastName, age, phoneNumbers, address);
         Phonebook.addProfile(profileToAdd);
+        Phonebook.writeToFile();
         System.out.println("Added profile: " + profileToAdd + "\n");
     }
 
@@ -101,22 +102,26 @@ public class ProfileHandler {
                     System.out.println("Enter the new first name:");
                     String newFirstName = InputHandler.getFirstName();
                     profile.setFirstName(newFirstName);
+                    Phonebook.writeToFile();
                     System.out.println("The first name is now updated to: " + newFirstName + "\n");
                     break;
                 case 2:
                     System.out.println("Enter the new last name:");
                     String newLastName = InputHandler.getLastName();
                     profile.setLastName(newLastName);
+                    Phonebook.writeToFile();
                     System.out.println("The last name is now updated to: " + newLastName + "\n");
                     break;
                 case 3:
                     System.out.println("Enter the new age:");
                     int newAge = InputHandler.getAge();
                     profile.setAge(newAge);
+                    Phonebook.writeToFile();
                     System.out.println("The age is now updated to: " + newAge + "\n");
                     break;
                 case 4:
                     updatePhoneNumber(profile);
+                    Phonebook.writeToFile();
                     break;
                 case 5:
                     System.out.println("Enter new address");
@@ -129,6 +134,7 @@ public class ProfileHandler {
                     System.out.println("Street number:");
                     String streetNumber = InputHandler.getStreetNumber();
                     updateNewAddress(profile, city, zipcode, streetName, streetNumber);
+                    Phonebook.writeToFile();
                     break;
                 case 0:
                         System.out.println("No changes made. \n");
@@ -220,7 +226,7 @@ public class ProfileHandler {
             boolean response = InputHandler.getYesOrNoResponse();
             if (response) {
                 Phonebook.removeProfile(matchingProfiles.get(0));
-
+                Phonebook.writeToFile();
                 System.out.println("The profile of " + firstName + " is deleted.\n");
             }else{
                 System.out.println("The profile is not deleted.\n");
@@ -240,6 +246,7 @@ public class ProfileHandler {
         if (choice >= 0 && choice < matchingProfiles.size()) {
             Profile choosedProfile = matchingProfiles.get(choice);
             Phonebook.removeProfile(choosedProfile);
+            Phonebook.writeToFile();
             System.out.println("The profile of " + choosedProfile.getFirstName()+ " " + choosedProfile.getLastName() + " is removed\n");
         } else {
             System.out.println("Invalid choice.");
