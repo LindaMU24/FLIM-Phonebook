@@ -2,7 +2,8 @@
 Detta är ett grupparbete i Java. Gruppen består av: Fredrik, Ivana, Madeleine och Linda.
 Vi har skapat en telefonbok med OOP principer, CRUD-operationer, arv och persistent data(FileStream). 
 Vi startade med att bygga vårt UML-Diagram och sedan lägga alla uppgifter på vår tavla i Trello. Uppgifterna fördelades mellan oss och tillsammans har vi byggt upp ett välfungerande projekt enligt den önskade specifikationen.
-Det var roligt att tillsammans se projektet växa fram.
+Det var roligt att tillsammans se projektet växa fram.  
+[Länk till UML](https://lucid.app/lucidchart/a1aa6bfc-1d9e-4386-9286-4df3b0e6ef5e/edit?viewport_loc=-404%2C-2490%2C2126%2C2117%2CHWEp-vi-RSFO&invitationId=inv_01298ea9-cdba-4e11-a41b-802344375f28)
 
 
 ## Kravspecifikationerna för uppgiften var:  

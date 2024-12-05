@@ -107,6 +107,7 @@ public abstract class Menu {
         adminUsers.add(new AdminUser("Ivana", "ivanaAdmin", "password"));
         adminUsers.add(new AdminUser("Linda", "lindaAdmin", "password"));
         adminUsers.add(new AdminUser("Madde", "maddeAdmin", "password"));
+        adminUsers.add(new AdminUser("Bill", "bill", "bill"));
         boolean credentialsCheck = false;
         boolean accessGranted = false;
         boolean passwordCheck = false;
