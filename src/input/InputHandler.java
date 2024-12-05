@@ -97,16 +97,15 @@ public class InputHandler {
 
     public static int getIntInRange(int min, int max) {
         while (true) {
-            while (!(scanner.hasNextInt())) {
-                scanner.nextLine();
-                System.out.println("Invalid input. Enter an Integer between " + min + " and " + max + ".");
+            if(scanner.hasNextInt()){
+                int input = scanner.nextInt();
+                if (input >= min && input <= max) {
+                    scanner.nextLine();
+                    return input;
+                }
             }
-            int input = scanner.nextInt();
-            if (input >= min && input <= max) {
-                scanner.nextLine();
-                return input;
-            }
-            scanner.next();
+            scanner.nextLine();
+            System.out.println("Invalid input. Enter an Integer between " + min + " and " + max + ".");
         }
     }
 
@@ -203,14 +202,33 @@ public class InputHandler {
         }
     }
 
+
+    /**
+     * Use to let the user select of which type the phone number is when adding or updating a number.
+     * @return Returns a String with the selected type of phone number. String then used in PhoneNumber-constructor.
+     */
     public static String getTypeNumber() {
-        while (true) {
-            String answer = scanner.nextLine();
-            if ((answer.equals("home") || answer.equals("work") || answer.equals("mobile"))) {
-                return answer;
-            }
-            System.out.println("Invalid input! Please enter 'mobile', 'home' or 'work'.");
+        System.out.println("Select the type of phone number:");
+        System.out.println("1. Mobile");
+        System.out.println("2. Home");
+        System.out.println("3. Work");
+        int phoneTypePick = InputHandler.getIntInRange(1, 3);
+        String type = "";
+        switch (phoneTypePick) {
+            case 1:
+                type = "mobile";
+                break;
+            case 2:
+                type = "home";
+                break;
+            case 3:
+                type = "work";
+                break;
+            default:
+                System.out.println("Invalid input! Please enter 'mobile', 'home' or 'work'.");
+                break;
         }
+        return type;
     }
 
     public static boolean getYesOrNoResponse() {
