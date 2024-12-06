@@ -1,59 +1,96 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 public class Phonebook {
 
     private static Phonebook instance;
     private static List<Profile> profiles = new ArrayList<>();
 
-    private Phonebook(){}
+    private Phonebook() {
+    }
 
-    public static Phonebook getInstance(){
-        if( instance == null){
+    public static Phonebook getInstance() {
+        if (instance == null) {
             instance = new Phonebook();
-            addInitialProfilesToList();
         }
         return instance;
     }
 
-    public static List<Profile> getProfiles(){
+    public static List<Profile> getProfiles() {
         return profiles;
     }
 
-    public static void addProfile(Profile profile){
+    public static void addProfile(Profile profile) {
         profiles.add(profile);
     }
 
-    public static void removeProfile(Profile profile){
+    public static void removeProfile(Profile profile) {
         profiles.remove(profile);
     }
 
-    // This is only used to populate the list of contacts at the start of the program.
-    private static void addInitialProfilesToList(){
-        List<PhoneNumber> phoneNumbersLinaS = new ArrayList<>();
-        phoneNumbersLinaS.add(new PhoneNumber("085503332", "home"));
-        phoneNumbersLinaS.add(new PhoneNumber("012345678", "work"));
-        List<PhoneNumber> phoneNumbersErikJ = new ArrayList<>();
-        phoneNumbersErikJ.add(new PhoneNumber("532875421", "home"));
-        List<PhoneNumber> phoneNumbersAnnaN = new ArrayList<>();
-        phoneNumbersAnnaN.add(new PhoneNumber("+4673444470", "mobile"));
-        phoneNumbersAnnaN.add(new PhoneNumber("077666542", "mobile"));
-        List<PhoneNumber> phoneNumbersJohanP = new ArrayList<>();
-        phoneNumbersJohanP.add(new PhoneNumber("01002000", "work"));
-        List<PhoneNumber> phoneNumbersSven = new ArrayList<>();
-        phoneNumbersSven.add(new PhoneNumber("92875421", "home"));
-        List<PhoneNumber> phoneNumbersFredrikO = new ArrayList<>();
-        phoneNumbersFredrikO.add(new PhoneNumber("05554333", "home"));
-        phoneNumbersFredrikO.add(new PhoneNumber("+467200022", "mobile"));
-        List<PhoneNumber> phoneNumbersAnnaP = new ArrayList<>();
-        phoneNumbersAnnaP.add(new PhoneNumber("66655444", "home"));
+    public static void writeToFile() {
+        try (FileWriter writer = new FileWriter("phonebook.txt")) {
+            for (Profile profile : profiles) {
+                writer.write("#PROFILEBEGIN\n");
+                writer.write(profile.getFirstName() + "\n");
+                writer.write(profile.getLastName() + "\n");
+                writer.write(profile.getAge() + "\n");
+                writer.write("#PHONNUMBERSBEGIN\n");
+                for (PhoneNumber number : profile.getPhoneNumber()) {
+                    writer.write(number.getNumber() + "\n");
+                    writer.write(number.getType() + "\n");
+                }
+                writer.write("#PHONENUMBEREND\n");
+                writer.write(profile.getAddress().getCity() + "\n");
+                writer.write(profile.getAddress().getZipCode() + "\n");
+                writer.write(profile.getAddress().getStreetName() + "\n");
+                writer.write(profile.getAddress().getStreetNumber() + "\n");
+                writer.write("#PROFILEEND\n");
+            }
 
-        profiles.add(new Profile("Lina", "Svensson", 19, phoneNumbersLinaS,new Address("Stockholm", "12345", "Blåbärsvägen", "12")));
-        profiles.add(new Profile("Erik", "Johansson", 28, phoneNumbersErikJ,new Address("Göteborg", "54321", "Lingonstigen", "8")));
-        profiles.add(new Profile("Anna", "Nilsson", 38, phoneNumbersAnnaN,new Address("Västerås", "55667", "Hallonvägen", "5")));
-        profiles.add(new Profile("Johan", "Lindström", 58, phoneNumbersJohanP,new Address("Uppsala", "11223", "Smultronstigen", "22")));
-        profiles.add(new Profile("Sven-André", "H:son-Larson dos Años", 81, phoneNumbersSven,new Address("Linköping", "33445", "Körsbärsvägen", "14")));
-        profiles.add(new Profile("Fredrik", "Olsson", 22, phoneNumbersFredrikO,new Address("Västerås", "55667", "Lingonstigen", "7")));
-        profiles.add(new Profile("Anna", "Persson", 58, phoneNumbersAnnaP,new Address("Örebro", "77889", "Äppelstigen", "9")));
+        } catch (IOException _) {
+            System.err.print("Error writing to file phonebook.txt");
+        }
     }
 
+    public static void readFromFile() {
+        List<Profile> tempProfiles = new ArrayList<>();
+
+        try {
+            File file = new File("phonebook.txt");
+            Scanner reader = new Scanner(file);
+            while (reader.hasNextLine()) {
+                reader.nextLine(); // "#PROFILEBEGIN"
+                String firstName = reader.nextLine();
+                String lastName = reader.nextLine();
+                int age = Integer.parseInt(reader.nextLine());
+                reader.nextLine(); // #PHONENUMBERBEGIN
+
+                String data = reader.nextLine();
+                ArrayList<PhoneNumber> phoneNumbers = new ArrayList<>();
+                if (!data.equals("#PHONENUMBEREND")) {
+                    do {
+                        String phoneNumber = data;
+                        String type = reader.nextLine();
+                        phoneNumbers.add(new PhoneNumber(phoneNumber, type));
+                        data = reader.nextLine();
+
+                    } while (!data.equals("#PHONENUMBEREND"));
+                }
+
+                String city = reader.nextLine();
+                String zipCode = reader.nextLine();
+                String streetName = reader.nextLine();
+                String streetNumber = reader.nextLine();
+                reader.nextLine();
+                tempProfiles.add(new Profile(firstName, lastName, age, phoneNumbers, new Address(city, zipCode, streetName, streetNumber)));
+            }
+            profiles = tempProfiles;
+            reader.close();
+        } catch (FileNotFoundException _) {
+            System.out.println("Error reading from file phonebook.txt");
+        }
+    }
 }
