@@ -1,6 +1,6 @@
 package user;
 
-public class AdminUser extends User {
+public class AdminUser extends User implements LoggedInUser{
 
     private String userName;
     private String password;
@@ -11,19 +11,13 @@ public class AdminUser extends User {
         this.password = password;
     }
 
-    /**
-     *  Get the username
-     * @return Returns username as String.
-     */
+    @Override
     public String getUserName() {
-        return userName;
+        return "";
     }
 
-    /**
-     * Get the password
-     * @return Returns the password as String.
-     */
+    @Override
     public String getPassword() {
-        return password;
+        return "";
     }
 }

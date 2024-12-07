@@ -1,4 +1,7 @@
 import input.*;
+import profile.Profile;
+import profile.ProfileHandler;
+import profile.SearchProfile;
 import user.AdminUser;
 
 import java.util.ArrayList;
@@ -25,6 +28,25 @@ public abstract class Menu {
     private static void nonAdminMenu(){
         System.out.println("Please enter your name: ");
         String name = InputHandler.getFirstName();
+
+
+//        if(MemberService.isMember(input)){
+//            System.out.println("Welcome back, " + input +"!");
+//            MemberService.setCurrentVisitor(input);
+//            return true;
+//        } else {
+//            System.out.println("You are not a member yet. \n Do you want to sign up? Y/N");
+//            boolean signup = InputHandler.getBoolean();
+//            if(signup){
+//                MemberService.addNewMemberAsVisitor();
+//                return true;
+//            } else {
+//                System.out.println("Good bye!");
+//                return false;
+//            }
+//        }
+
+
         boolean running = true;
         while(running){
             System.out.println("##   Welcome to the phonebook, " + name + "!   ##");

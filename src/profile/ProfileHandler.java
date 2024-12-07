@@ -1,4 +1,7 @@
+package profile;
+
 import input.InputHandler;
+import data.Phonebook;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +64,7 @@ public class ProfileHandler {
         }
         if (matchingProfiles.size() == 1) {
 
-            System.out.println("Profile found: " + matchingProfiles.get(0));
+            System.out.println("profile.Profile found: " + matchingProfiles.get(0));
             System.out.println("Do you want to update this profile? Yes/No");
             boolean response = InputHandler.getYesOrNoResponse();
             if (response) {
@@ -93,7 +96,7 @@ public class ProfileHandler {
         System.out.println("2. Last name");
         System.out.println("3. Age");
         System.out.println("4. Phone number");
-        System.out.println("5. Address");
+        System.out.println("5. profile.Address");
         System.out.println("0. Cancel");
         int updateChoice = InputHandler.getIntInRange(0, 5);
             switch (updateChoice) {
@@ -197,7 +200,7 @@ public class ProfileHandler {
         Address newAddress = new Address();
         newAddress.setAddress(city, zipcode, streetName, streetNumber);
         profile.setAddress(newAddress);
-        System.out.println("Address is updated to: " + streetName + " " + streetNumber + ", " + zipcode + " " + city + "\n");
+        System.out.println("profile.Address is updated to: " + streetName + " " + streetNumber + ", " + zipcode + " " + city + "\n");
     }
 
     public static void deleteProfile() {
@@ -215,7 +218,7 @@ public class ProfileHandler {
             return;
         }
         if(matchingProfiles.size() == 1){
-            System.out.println("Profile found: " + matchingProfiles.get(0));
+            System.out.println("profile.Profile found: " + matchingProfiles.get(0));
             System.out.println("Do you want to delete this profile? Yes/No");
             boolean response = InputHandler.getYesOrNoResponse();
             if (response) {

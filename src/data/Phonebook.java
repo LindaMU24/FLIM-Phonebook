@@ -1,4 +1,13 @@
-import java.io.*;
+package data;
+
+import profile.Address;
+import profile.PhoneNumber;
+import profile.Profile;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

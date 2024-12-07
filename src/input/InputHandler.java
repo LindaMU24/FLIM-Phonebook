@@ -205,7 +205,7 @@ public class InputHandler {
 
     /**
      * Use to let the user select of which type the phone number is when adding or updating a number.
-     * @return Returns a String with the selected type of phone number. String then used in PhoneNumber-constructor.
+     * @return Returns a String with the selected type of phone number. String then used in profile.PhoneNumber-constructor.
      */
     public static String getTypeNumber() {
         System.out.println("Select the type of phone number:");

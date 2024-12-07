@@ -1,4 +1,4 @@
-# Phonebook
+# data.Phonebook
 Detta är ett grupparbete i Java. Gruppen består av: Fredrik, Ivana, Madeleine och Linda.
 Vi har skapat en telefonbok med OOP principer, CRUD-operationer, arv och persistent data(FileStream). 
 Vi startade med att bygga vårt UML-Diagram och sedan lägga alla uppgifter på vår tavla i Trello. Uppgifterna fördelades mellan oss och tillsammans har vi byggt upp ett välfungerande projekt enligt den önskade specifikationen.
