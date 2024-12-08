@@ -70,10 +70,8 @@ public class RegisteredUser extends NonAdminUser implements LoggedInUser{
 
     @Override
     public String toString() {
-        return "RegisteredUser{" +
-                "name='" + getName() + '\'' +
-                "userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "\nName: " + getName() +
+                "\nUsername: " + userName +
+                "\nPassword: " + password;
     }
 }

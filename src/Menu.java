@@ -64,7 +64,6 @@ public abstract class Menu {
                     }
                 }
 
-//                loginUser();
                 break;
             case 2:
 
@@ -93,15 +92,7 @@ public abstract class Menu {
             case 0:
                 break;
         }
-//        System.out.println("Do you want to login to an account? Yes/No");
-//        boolean loggedIn = InputHandler.getYesOrNoResponse();
-//        if(loggedIn){
 
-//
-//        } else if (!loggedIn) {
-//            boolean nonRegMenu = true;
-//
-//        }
 
     }
 

@@ -13,50 +13,51 @@ public class UserService {
     public static RegisteredUser currentUser;
 
 
-        public static RegisteredUser getCurrentUser(){
-            return currentUser;
-        }
+    public static RegisteredUser getCurrentUser() {
+        return currentUser;
+    }
 
-        public static void setCurrentUser(RegisteredUser user){
-            UserService.currentUser = user;
-        }
-
-
+    public static void setCurrentUser(RegisteredUser user) {
+        UserService.currentUser = user;
+    }
 
 
-
-        public static void registerUser(){
-            System.out.println("Please enter first name:");
-            String name = InputHandler.getFirstName();
-            String userName = "";
-            boolean userExists = true;
-            while(userExists){
-                System.out.println("Please enter desired username:");
-                userName = InputHandler.getFirstName();
-                for(RegisteredUser user : RegisteredUsers.getUsers()){
-                    if(user.getUserName().equals(name)){
+    public static void registerUser() {
+        System.out.println("Please enter first name:");
+        String name = InputHandler.getFirstName();
+        String userName = "";
+        boolean userExists = true;
+        while (userExists) {
+            System.out.println("Please enter desired username:");
+            userName = InputHandler.getFirstName();
+            if (!RegisteredUsers.getUsers().isEmpty()){
+                for (RegisteredUser user : RegisteredUsers.getUsers()) {
+                    if (user.getUserName().equals(userName)) {
                         System.out.println("User already exists!");
                     } else {
                         userExists = false;
                     }
                 }
+            } else {
+                userExists = false;
             }
-            System.out.println("Please enter desired password:");
-            String password = InputHandler.getFirstName();
-
-            RegisteredUsers.addUser(new RegisteredUser(name, userName, password));
-
-            System.out.println("Thank you for registering, " + name + "!");
-
         }
+        System.out.println("Please enter desired password:");
+        String password = InputHandler.getFirstName();
 
-    public static boolean checkCredentialsUser(){
+        RegisteredUsers.addUser(new RegisteredUser(name, userName, password));
+
+        System.out.println("Thank you for registering, " + name + "!");
+
+    }
+
+    public static boolean checkCredentialsUser() {
         boolean credentialsCheck = false;
         boolean accessGranted = false;
         boolean passwordCheck = false;
         List<RegisteredUser> users = RegisteredUsers.getUsers();
         String name = "";
-        while(!credentialsCheck) {
+        while (!credentialsCheck) {
             String userName;
             String password;
             int index = 0;
@@ -69,7 +70,7 @@ public class UserService {
                     passwordCheck = true;
                     credentialsCheck = true;
                     break;
-                }else {
+                } else {
                     for (RegisteredUser user : users) {
                         if (user.getUserName().equals(userName)) {
                             index = users.indexOf(user);
@@ -78,7 +79,7 @@ public class UserService {
                             break;
                         }
                     }
-                    if(!username){
+                    if (!username) {
                         System.out.println("User not found!");
                     }
                 }
@@ -91,7 +92,7 @@ public class UserService {
                     passwordCheck = true;
                     credentialsCheck = true;
                     break;
-                }else {
+                } else {
                     if (users.get(index).getPassword().equals(password)) {
                         credentialsCheck = true;
                         accessGranted = true;
@@ -121,7 +122,7 @@ public class UserService {
             System.out.println(firstName + " contact is not found");
             return;
         }
-        if(matchingProfiles.size() == 1){
+        if (matchingProfiles.size() == 1) {
             System.out.println("Contact found: " + matchingProfiles.get(0));
             System.out.println("Do you want to delete this contact? Yes/No");
             boolean response = InputHandler.getYesOrNoResponse();
@@ -129,9 +130,10 @@ public class UserService {
                 RegisteredUser.removeFromFavorites(matchingProfiles.get(0));
 
                 System.out.println("The contact of " + firstName + " is deleted.\n");
-            }else{
+            } else {
                 System.out.println("The contact is not deleted.\n");
-            } return;
+            }
+            return;
         }
         System.out.println("Multiple contacts found. Please choose which contact you want to delete:");
         for (int i = 0; i < matchingProfiles.size(); i++) {
@@ -140,14 +142,15 @@ public class UserService {
         System.out.println("0. Exit without deleting anything.");
         System.out.println("Enter the number of the contact you want to delete: ");
         int choice = InputHandler.getIntInRange(0, matchingProfiles.size());
-        if(choice == 0){
+        if (choice == 0) {
             System.out.println("Exit without deleting.\n");
-            return;}
+            return;
+        }
         choice = choice - 1;
         if (choice >= 0 && choice < matchingProfiles.size()) {
             Profile choosedProfile = matchingProfiles.get(choice);
             RegisteredUser.removeFromFavorites(choosedProfile);
-            System.out.println("The contact of " + choosedProfile.getFirstName()+ " " + choosedProfile.getLastName() + " is removed\n");
+            System.out.println("The contact of " + choosedProfile.getFirstName() + " " + choosedProfile.getLastName() + " is removed\n");
         } else {
             System.out.println("Invalid choice.");
         }
@@ -168,7 +171,7 @@ public class UserService {
             System.out.println(firstName + " profile is not found");
             return;
         }
-        if(matchingProfiles.size() == 1){
+        if (matchingProfiles.size() == 1) {
             System.out.println("profile.Profile found: " + matchingProfiles.get(0));
             System.out.println("Do you want to add this profile? Yes/No");
             boolean response = InputHandler.getYesOrNoResponse();
@@ -176,9 +179,10 @@ public class UserService {
                 UserService.getCurrentUser().addToFavorites(matchingProfiles.get(0));
 
                 System.out.println("The profile of " + firstName + " is added.\n");
-            }else{
+            } else {
                 System.out.println("The profile is not added.\n");
-            } return;
+            }
+            return;
         }
         System.out.println("Multiple profiles found. Please choose which profile you want to add:");
         for (int i = 0; i < matchingProfiles.size(); i++) {
@@ -187,24 +191,21 @@ public class UserService {
         System.out.println("0. Exit without adding anything.");
         System.out.println("Enter the number of the profile you want to add: ");
         int choice = InputHandler.getIntInRange(0, matchingProfiles.size());
-        if(choice == 0){
+        if (choice == 0) {
             System.out.println("Exit without adding.\n");
-            return;}
+            return;
+        }
         choice = choice - 1;
         if (choice >= 0 && choice < matchingProfiles.size()) {
             Profile choosedProfile = matchingProfiles.get(choice);
             UserService.getCurrentUser().addToFavorites(choosedProfile);
 
-            System.out.println("The profile of " + choosedProfile.getFirstName()+ " " + choosedProfile.getLastName() + " is added\n");
+            System.out.println("The profile of " + choosedProfile.getFirstName() + " " + choosedProfile.getLastName() + " is added\n");
         } else {
             System.out.println("Invalid choice.");
         }
     }
 
 
-
-
-
-
-    }
+}
 //

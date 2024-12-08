@@ -88,6 +88,7 @@ public class RegisteredUsers {
                 }
                 writer.write("#FAVORITESEND\n");
                 writer.write("#USEREND\n");
+                writer.write("\n ");
             }
         } catch (IOException _) {
             System.err.print("Error writing to file " + filename + ".");
@@ -112,7 +113,7 @@ public class RegisteredUsers {
                     reader.nextLine();
                     do {
                         String firstName = reader.nextLine();
-                        if (!firstName.equals("#FAVORITESEND")) {
+                        if (!firstName.equals("#USEREND")) {
                             String lastName = reader.nextLine();
                             int age = Integer.parseInt(reader.nextLine());
                             reader.nextLine(); // #PHONENUMBERBEGIN
