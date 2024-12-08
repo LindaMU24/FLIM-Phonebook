@@ -13,11 +13,11 @@ public class AdminUser extends User implements LoggedInUser{
 
     @Override
     public String getUserName() {
-        return "";
+        return userName;
     }
 
     @Override
     public String getPassword() {
-        return "";
+        return password;
     }
 }

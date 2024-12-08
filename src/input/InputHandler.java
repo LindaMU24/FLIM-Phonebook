@@ -30,7 +30,7 @@ public class InputHandler {
         while (true) {
             while (!(scanner.hasNextInt())) {
                 scanner.nextLine();
-                System.out.println("Invalid input. Please enter number between 0 and 1");
+                System.out.println("Invalid input. Please enter number between 0 and 4");
             }
             int input = scanner.nextInt();
             scanner.nextLine();
@@ -39,8 +39,14 @@ public class InputHandler {
                     return UserMenuMode.EXITING;
                 case 1:
                     return UserMenuMode.SEARCH;
+                case 2:
+                    return UserMenuMode.SHOW_FAVORITES;
+                case 3:
+                    return UserMenuMode.ADD_FAVORITES;
+                case 4:
+                    return UserMenuMode.REMOVE_FAVORITES;
                 default:
-                    System.out.println("Invalid input. Please enter number between 0 and 1");
+                    System.out.println("Invalid input. Please enter number between 0 and 4");
             }
         }
     }
@@ -49,7 +55,7 @@ public class InputHandler {
         while (true) {
             while (!(scanner.hasNextInt())) {
                 scanner.nextLine();
-                System.out.println("Invalid input. Please enter number between 0 and 4");
+                System.out.println("Invalid input. Please enter number between 0 and 6");
             }
             int input = scanner.nextInt();
             scanner.nextLine();
@@ -64,8 +70,12 @@ public class InputHandler {
                     return AdminMenuMode.REMOVE;
                 case 4:
                     return AdminMenuMode.UPDATE;
+                case 5:
+                    return AdminMenuMode.SHOW_USERS;
+                case 6:
+                    return AdminMenuMode.ADD_USER;
                 default:
-                    System.out.println("Invalid input. Please enter number between 0 and 4");
+                    System.out.println("Invalid input. Please enter number between 0 and 6");
             }
         }
     }

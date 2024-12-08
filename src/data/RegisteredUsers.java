@@ -25,18 +25,28 @@ public class RegisteredUsers {
     public static RegisteredUsers getInstance() {
         if (instance == null) {
             instance = new RegisteredUsers();
-            addInitialMember();
+//            addInitialMember();
         }
         return instance;
     }
 
-//    public static List<Profile> getProfiles() {
+    public static void printAllUsers() {
+        for (RegisteredUser user : users) {
+            System.out.println(user.toString());
+        }
+    }
+
+    public static List<RegisteredUser> getUsers() {
+        return users;
+    }
+
+    //    public static List<Profile> getProfiles() {
 //        return profiles;
 //    }
 //
-//    public static void addProfile(Profile profile) {
-//        profiles.add(profile);
-//    }
+    public static void addUser(RegisteredUser user) {
+        users.add(user);
+    }
 //
 //    public static void removeProfile(Profile profile) {
 //        profiles.remove(profile);
@@ -94,36 +104,47 @@ public class RegisteredUsers {
                 String name = reader.nextLine();
                 String userName = reader.nextLine();
                 String password = reader.nextLine();
+
                 String readLine = reader.nextLine();
                 ArrayList<Profile> profiles = new ArrayList<>();
-                if (!readLine.equals("#FAVORITESEND")) {
+
+                while (!readLine.equals("#FAVORITESEND")) {
+                    reader.nextLine();
                     do {
-                        reader.nextLine();
                         String firstName = reader.nextLine();
-                        String lastName = reader.nextLine();
-                        int age = Integer.parseInt(reader.nextLine());
-                        reader.nextLine(); // #PHONENUMBERBEGIN
-                        String data = reader.nextLine();
-                        ArrayList<PhoneNumber> phoneNumbers = new ArrayList<>();
-                        if (!data.equals("#PHONENUMBEREND")) {
-                            do {
-                                String phoneNumber = data;
-                                String type = reader.nextLine();
-                                phoneNumbers.add(new PhoneNumber(phoneNumber, type));
-                                data = reader.nextLine();
+                        if (!firstName.equals("#FAVORITESEND")) {
+                            String lastName = reader.nextLine();
+                            int age = Integer.parseInt(reader.nextLine());
+                            reader.nextLine(); // #PHONENUMBERBEGIN
+                            String data = reader.nextLine();
+                            ArrayList<PhoneNumber> phoneNumbers = new ArrayList<>();
+                            if (!data.equals("#PHONENUMBEREND")) {
+                                do {
+                                    String phoneNumber = data;
+                                    String type = reader.nextLine();
+                                    phoneNumbers.add(new PhoneNumber(phoneNumber, type));
+                                    data = reader.nextLine();
 
-                            } while (!data.equals("#PHONENUMBEREND"));
+                                } while (!data.equals("#PHONENUMBEREND"));
+                            }
+                            String city = reader.nextLine();
+                            String zipCode = reader.nextLine();
+                            String streetName = reader.nextLine();
+                            String streetNumber = reader.nextLine();
+                            profiles.add(new Profile(firstName, lastName, age, phoneNumbers, new Address(city, zipCode, streetName, streetNumber)));
+                            reader.nextLine();
+                            readLine = reader.nextLine();
+
+                        } else {
+                            readLine = "#FAVORITESEND";
                         }
-                        String city = reader.nextLine();
-                        String zipCode = reader.nextLine();
-                        String streetName = reader.nextLine();
-                        String streetNumber = reader.nextLine();
-                        profiles.add(new Profile(firstName, lastName, age, phoneNumbers, new Address(city, zipCode, streetName, streetNumber)));
-                        readLine = reader.nextLine();
-                    } while (!readLine.equals("#PROFILEEND"));
-                    tempUsers.add(new RegisteredUser(name, userName, password, profiles));
 
+                    } while (!readLine.equals("#FAVORITESEND"));
+
+
+                    tempUsers.add(new RegisteredUser(name, userName, password, profiles));
                 }
+                reader.nextLine();
             }
             users = tempUsers;
             reader.close();

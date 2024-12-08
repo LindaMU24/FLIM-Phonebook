@@ -1,5 +1,6 @@
 import data.Phonebook;
 import data.RegisteredUsers;
+import user.UserService;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,6 +10,6 @@ public class Main {
         RegisteredUsers.getInstance();
         Menu.mainMenu();
         Phonebook.writeToFile();
-//        RegisteredUsers.writeUsers();
+        RegisteredUsers.writeUsers();
     }
 }

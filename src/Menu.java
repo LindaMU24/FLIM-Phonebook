@@ -1,8 +1,12 @@
+import data.RegisteredUsers;
 import input.*;
 import profile.Profile;
 import profile.ProfileHandler;
 import profile.SearchProfile;
 import user.AdminUser;
+import user.RegisteredUser;
+import user.User;
+import user.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,43 +29,80 @@ public abstract class Menu {
         }
     }
 
+    public static void loginUser(){
+
+    }
+
     private static void nonAdminMenu(){
-        System.out.println("Please enter your name: ");
-        String name = InputHandler.getFirstName();
+        System.out.println("##   Login   ##");
+        System.out.println("1. I have an account.");
+        System.out.println("2. I want to register for an account.");
+        System.out.println("3. I just want to search the phonebook");
+        System.out.println("0. Go back.");
+        int choice = InputHandler.getIntInRange(0,3);
+        switch(choice) {
+            case 1:
+                boolean reggedMenu = UserService.checkCredentialsUser();
+                while(reggedMenu) {
+                    System.out.println("##   Welcome to the phonebook, " + UserService.getCurrentUser().getName() + "!   ##");
+                    System.out.println("What do you want to do?\n");
+                    System.out.println("1. Search");
+                    System.out.println("2. Show favorites");
+                    System.out.println("3. Add to favorites");
+                    System.out.println("4. Delete from favorites");
+                    System.out.println("0. Quit to main menu");
+                    UserMenuMode mode = InputHandler.getUserMenu();
+                    switch (mode) {
+                        case UserMenuMode.SEARCH -> searchMenu();
+                        case UserMenuMode.SHOW_FAVORITES -> RegisteredUser.printFavorites();
+                        case UserMenuMode.ADD_FAVORITES -> UserService.addToFavorites();
+                        case UserMenuMode.REMOVE_FAVORITES -> UserService.deleteFavorite();
+                        case UserMenuMode.EXITING -> {
+                            System.out.println("Goodbye, " + UserService.getCurrentUser().getName() + "!");
+                            reggedMenu = false;
+                        }
+                    }
+                }
 
+//                loginUser();
+                break;
+            case 2:
 
-//        if(MemberService.isMember(input)){
-//            System.out.println("Welcome back, " + input +"!");
-//            MemberService.setCurrentVisitor(input);
-//            return true;
-//        } else {
-//            System.out.println("You are not a member yet. \n Do you want to sign up? Y/N");
-//            boolean signup = InputHandler.getBoolean();
-//            if(signup){
-//                MemberService.addNewMemberAsVisitor();
-//                return true;
-//            } else {
-//                System.out.println("Good bye!");
-//                return false;
-//            }
+                UserService.registerUser();
+                break;
+            case 3:
+            boolean nonRegMenu = true;
+
+                while(nonRegMenu){
+                    System.out.println("##   Welcome to the phonebook, !   ##");
+                    System.out.println("What do you want to do?\n");
+                    System.out.println("1. Search");
+                    System.out.println("0. Quit to main menu");
+                    UserMenuMode mode = InputHandler.getUserMenu();
+                    switch(mode) {
+                        case UserMenuMode.SEARCH -> searchMenu();
+                        case UserMenuMode.EXITING -> {
+                            System.out.println("Goodbye!");
+                            nonRegMenu = false;
+                        }
+                    }
+                }
+
+                searchMenu();
+                break;
+            case 0:
+                break;
+        }
+//        System.out.println("Do you want to login to an account? Yes/No");
+//        boolean loggedIn = InputHandler.getYesOrNoResponse();
+//        if(loggedIn){
+
+//
+//        } else if (!loggedIn) {
+//            boolean nonRegMenu = true;
+//
 //        }
 
-
-        boolean running = true;
-        while(running){
-            System.out.println("##   Welcome to the phonebook, " + name + "!   ##");
-            System.out.println("What do you want to do?\n");
-            System.out.println("1. Search");
-            System.out.println("0. Quit to main menu");
-            UserMenuMode mode = InputHandler.getUserMenu();
-            switch(mode) {
-                case UserMenuMode.SEARCH -> searchMenu();
-                case UserMenuMode.EXITING -> {
-                    System.out.println("Goodbye, " + name + "!");
-                    running = false;
-                }
-            }
-        }
     }
 
     private static void adminMenu() {
@@ -73,6 +114,8 @@ public abstract class Menu {
             System.out.println("2. Add profile");
             System.out.println("3. Remove profile");
             System.out.println("4. Update profile");
+            System.out.println("5. Show all users");
+            System.out.println("6. Add new user");
             System.out.println("0. Quit to main menu");
             AdminMenuMode mode = InputHandler.getAdminMenuMode();
             switch(mode) {
@@ -80,6 +123,9 @@ public abstract class Menu {
                 case AdminMenuMode.ADD -> ProfileHandler.addProfile();
                 case AdminMenuMode.REMOVE -> ProfileHandler.deleteProfile();
                 case AdminMenuMode.UPDATE -> ProfileHandler.updateProfile();
+                case AdminMenuMode.SHOW_USERS -> RegisteredUsers.printAllUsers();
+                case AdminMenuMode.ADD_USER -> UserService.registerUser();
+
                 case AdminMenuMode.EXITING -> running = false;
             }
         }

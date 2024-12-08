@@ -5,5 +5,7 @@ public enum AdminMenuMode {
     ADD,
     REMOVE,
     UPDATE,
+    SHOW_USERS,
+    ADD_USER,
     EXITING
 }
